@@ -6,6 +6,10 @@ codes can be run together, allowing to model complex physical phenomena on diffe
 physical scales. 
 
 The platform is organized into a hierarchical set of levels, namely
-* Item 1: Level 0, main level of the Numerical Platform where the different components are gathered
-* Item 2: Level 1, differentiation of Numerical Platform main components into
-  ** Item 2a: PLAT_THIRD_PARTY
+* Level 0" main level of the Numerical Platform where the different components are gathered
+* Level 1: differentiation of Numerical Platform main components into:
+  * plat_repo: level where installing scripts are gathered and components are built
+  * PLAT_THIRD_PARTY: components needed to run the numerical codes
+  * PLAT_CODES: the numerical codes
+  * PLAT_VISU: software for post processing and data visualization
+  * USERS: level where applications are run
