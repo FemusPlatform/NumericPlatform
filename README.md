@@ -15,17 +15,17 @@ The platform is organized into a hierarchical set of levels, namely
   * USERS: level where applications are run
 * Level 2: differentiation of the main components. Up to now the following packages can be installed
   * PLAT_THIRD_PARTY: 
-      [Salome platform](http://www.salome-platform.org/) 
-      [OpenMPI library](https://www.open-mpi.org/)
-      [Petsc library](https://www.mcs.anl.gov/petsc/)
-      [Libmesh code](http://libmesh.github.io/)
-      [med data format library](http://www.salome-platform.org/user-section/about/med)
+      [Salome platform](http://www.salome-platform.org/),
+      [OpenMPI library](https://www.open-mpi.org/),
+      [Petsc library](https://www.mcs.anl.gov/petsc/),
+      [Libmesh code](http://libmesh.github.io/),
+      [med data format library](http://www.salome-platform.org/user-section/about/med),
       [MedCoupling library](http://docs.salome-platform.org/latest/dev/MEDCoupling/index.html)
   * PLAT_CODES:
-      [FEMuS code]
-      [OpenFOAM extend](https://openfoamwiki.net/index.php/Main_Page)
-      [Dragon code](http://www.oecd-nea.org/tools/abstract/detail/uscd1234/)
-      [Donjon code]()
+      FEMuS code,
+      [OpenFOAM extend](https://openfoamwiki.net/index.php/Main_Page),
+      [Dragon code](http://www.oecd-nea.org/tools/abstract/detail/uscd1234/),
+      Donjon code
   * PLAT_VISU:
-      [Paraview, as Salome package]
+      Paraview, as Salome package
   
