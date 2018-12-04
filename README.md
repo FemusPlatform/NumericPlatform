@@ -29,3 +29,4 @@ The platform is organized into a hierarchical set of levels, namely
   * PLAT_VISU:
       Paraview, as Salome package
   
+  This repository represents Level 0 and it can be used to perform a complete Numerical Platform installation from scratch
