@@ -64,8 +64,10 @@ if [ -f "plat_conf.sh" ]; then
         wget --progress=dot https://download.open-mpi.org/release/open-mpi/v$OMPMajor.$OMPMinor/openmpi-$CompleteVersion.tar.gz \
         2>&1 | grep "%" | sed -u -e "s,\.,,g" | awk '{print $2}' | sed -u -e "s,\%,,g" \
         | dialog --gauge "Download openmpi" 10 100
+        clear
         if [ $fast == 'no' ]; then 
           dialog --title "Done downloading" --msgbox "openmpi-$CompleteVersion.tar.gz dowloaded from https://download.open-mpi.org/release/open-mpi/v$OMPMajor.$OMPMinor/openmpi-$CompleteVersion.tar.gz" 10 50
+          clear
         fi
         mv ${PKG_NAME}.tar.gz   $INSTALL_BUILD_TAR_DIR/${PKG_NAME}.tar.gz
      fi

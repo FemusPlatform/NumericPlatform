@@ -87,8 +87,10 @@ if [ ! -d $INSTALL_BUILD_PKG_DIR ];   then
       wget --progress=dot https://github.com/libMesh/libmesh/releases/download/v$VERSION/libmesh-$VERSION.tar.gz \
       2>&1 | grep "%" |  sed -u -e "s,\.,,g" | awk '{print $2}' | sed -u -e  "s,\%,,g" \
       | dialog --gauge "Download Libmesh $VERSION" 10 100
+      clear
       if [ $fast == 'no' ]; then 
         dialog --title "Done downloading" --msgbox "${PKG_NAME}.tar.gz dowloaded from https://github.com/libMesh/libmesh/releases/download/v$VERSION/libmesh-$VERSION.tar.gz " 10 50
+        clear
       fi
         mv  ${PKG_NAME}.tar.gz    $INSTALL_BUILD_TAR_DIR/${PKG_NAME}.tar.gz
     fi

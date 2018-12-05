@@ -92,8 +92,10 @@ if [ ! -d $INSTALL_PLAT_PKG_DIR ]
      wget --progress=dot 'https://www.salome-platform.org/downloads/previous-versions/salome-v'$CompleteVersion'/DownloadDistr?platform=UniBinNew2&version='$CompleteVersion'_64bit' \
      2>&1 | grep "%" | sed -u -e "s,\.,,g" | awk '{print $2}' | sed -u -e "s,\%,,g" \
      | dialog --gauge "We are downloading SALOME" 10 100
+     clear
      if [ $fast == 'no' ]; then 
        dialog --title "Done downloading" --msgbox "Salome-V"$1".run dowloaded from https://www.salome-platform.org/downloads" 10 50
+       clear
      fi
      mv DownloadDistr?platform=UniBinNew2\&version=$1_64bit packages_targz/Salome-V$1-univ_public.run
   fi 

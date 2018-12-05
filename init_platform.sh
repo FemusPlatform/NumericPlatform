@@ -1,1 +1,2 @@
-git clone https://github.com/FemusPlatform/plat_repo.git
+cd PLAT_BUILD
+source install.sh
