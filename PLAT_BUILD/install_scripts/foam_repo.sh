@@ -94,7 +94,6 @@ cd $PLAT_CODES_DIR/$FOAM_MAIN
     echo "openmpi library dirs " "`mpicc --showme:libdirs`"
     echo "openmpi link dirs    " "`mpicc --showme:linkdirs`"
     
-    read -p "Press any key to continue... " -n1 -s
     echo 
     
     source bashrc
