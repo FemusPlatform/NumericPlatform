@@ -34,7 +34,7 @@ BUILD_DIR=$PWD
 #  down to platform dir ------------------>  INSTALL_DIR
 cd ../;  PLAT_DIR=$PWD
 
-sed -e "4s|.*|export PLAT_DIR=$PLAT_DIR|" $PLAT_DIR/plat_repo/install_scripts/plat_conf_template.sh>$PLAT_DIR/plat_conf.sh
+sed -e "4s|.*|export PLAT_DIR=$PLAT_DIR|" $PLAT_DIR/PLAT_BUILD/install_scripts/plat_conf_template.sh>$PLAT_DIR/plat_conf.sh
 
 # 1b make directory -------------------------------------------------------------
 ok=1
