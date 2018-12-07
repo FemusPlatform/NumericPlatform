@@ -109,6 +109,8 @@ else
 echo   "Wrong directory for this script !!!!! Go to plat_repo (BUILD_DIR) !!!!!!"
 fi
  
- 
- 
+#
+# ADDING NumericPlatform ALIAS TO ~/.bashrc
+#
+echo "NumericPlatform='export MYHOME=$PLAT_DIR && cd $MYHOME && source plat_conf.sh '" >> ~/.bashrc
  
