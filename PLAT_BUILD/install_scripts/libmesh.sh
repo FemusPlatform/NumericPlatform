@@ -145,8 +145,10 @@ echo ln -s $INSTALL_PLAT_PKG_DIR/lib64  $INSTALL_PLAT_PKG_DIR/lib; echo ${SCRIPT
 
 if [ -d $INSTALL_DIR/libmesh ]; then rm -r $INSTALL_DIR/libmesh; echo "ln deleted"; fi
 ln -s  $INSTALL_PLAT_PKG_DIR    $PLAT_THIRD_PARTY_DIR/libmesh; echo ${SCRIPT_NAME} " 3a link libmesh "
-ln -s  $INSTALL_PLAT_PKG_DIR    $PLAT_CODES/libmesh; echo ${SCRIPT_NAME} " 3a link libmesh "
+ln -s  $INSTALL_PLAT_PKG_DIR    $PLAT_CODES_DIR/libmesh; echo ${SCRIPT_NAME} " 3b link libmesh "
+
 echo  ln -s  $INSTALL_PLAT_PKG_DIR    $PLAT_THIRD_PARTY_DIR/libmesh; echo ${SCRIPT_NAME} " 3a link libmesh "
+echo  ln -s  $INSTALL_PLAT_PKG_DIR    $PLAT_CODES_DIR/libmesh; echo ${SCRIPT_NAME} " 3b link libmesh "
 
 else
 
