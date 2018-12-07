@@ -1,0 +1,15 @@
+# git-ls-files --others --exclude-from=.git/info/exclude
+# Lines that start with '#' are comments.
+
+# FOLDERS 
+PLAT_BUILD/*
+PLAT_CODES/*
+PLAT_THIRD_PARTY/*
+PLAT_USERS/*
+PLAT_VISU/*
+plat_conf.sh
+# exception
+!PLAT_BUILD/*.sh
+!PLAT_BUILD/install_scripts/*.sh
+
+# end-of-file
