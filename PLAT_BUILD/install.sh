@@ -13,6 +13,8 @@ source gui_guide.sh # contains show_guide
 source gui_install_package.sh # contains show_install
 # ===================================================================================
 
+source install_scripts/requirements.sh
+
 if [ -f '../plat_conf.sh' ]; then
   source ../plat_conf.sh
 else
