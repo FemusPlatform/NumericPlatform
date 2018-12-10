@@ -68,14 +68,21 @@ for word in $choice; do
 # OPENMPI --------------------------------------------------------------------------------------------  
  if [ $word == 'openmpi'  ]; then
    export OpenmpiOption=$OpenmpiLast
+   export COMPLETED=0
    if [ $fast == 'no' ]; then 
      dialog --title "requirements" --msgbox " OpenMPI required packages: none " 10 50
    fi
    clear
    cd $BUILD_DIR
    source install_scripts/openmpi.sh $OpenmpiOption
-   if [ $fast == 'no' ]; then 
-     dialog --title "Done installing" --msgbox " OpenMPI is installed" 10 50
+   if [ $COMPLETED == '0' ]; then
+     if [ $fast == 'no' ]; then 
+       dialog --title "Done installing" --msgbox " OpenMPI is installed" 10 50
+     fi
+   else
+     dialog --title "Unable to install" --msgbox " For details check logs in \n $INSTALL_PLAT_LOG_DIR \n directory" 10 50
+     clear
+     return
    fi
  fi
  
@@ -83,6 +90,7 @@ for word in $choice; do
 # PETSC-DBG --------------------------------------------------------------------------------------------   
  if [ $word == 'petsc-dbg'  ]; then
    export PetscOption
+   export COMPLETED=0
    if [ $fast == 'no' ]; then 
       dialog --clear  --backtitle " Platform installer " \
        --title "[ PETSC VERSION ]" \
@@ -103,8 +111,14 @@ for word in $choice; do
    clear
    cd $BUILD_DIR
    source install_scripts/petsc_dbg.sh $PetscOption
-   if [ $fast == 'no' ]; then 
-     dialog --title "Done installing" --msgbox " PETSC-dbg is installed" 10 50
+   if [ $COMPLETED == '0' ]; then
+     if [ $fast == 'no' ]; then 
+       dialog --title "Done installing" --msgbox " PETSC is installed" 10 50
+     fi
+   else
+     dialog --title "Unable to install" --msgbox " For details check logs in \n $INSTALL_PLAT_LOG_DIR \n directory" 10 50
+     clear
+     return
    fi
  fi
  
@@ -112,6 +126,7 @@ for word in $choice; do
 # PETSC-OPT --------------------------------------------------------------------------------------------   
  if [ $word == 'petsc-opt'  ]; then
    export PetscOption
+   export COMPLETED=0
    if [ $fast == 'no' ]; then 
       dialog --clear  --backtitle " Platform installer " \
        --title "[ PETSC VERSION ]" \
@@ -132,36 +147,56 @@ for word in $choice; do
    clear
    cd $BUILD_DIR
    source install_scripts/petsc_opt.sh $PetscOption
-   if [ $fast == 'no' ]; then 
-     dialog --title "Done installing" --msgbox " PETSC-opt is installed" 10 50
+   if [ $COMPLETED == '0' ]; then
+     if [ $fast == 'no' ]; then 
+       dialog --title "Done installing" --msgbox " PETSC is installed" 10 50
+     fi
+   else
+     dialog --title "Unable to install" --msgbox " For details check logs in \n $INSTALL_PLAT_LOG_DIR \n directory" 10 50
+     clear
+     return
    fi
  fi
  
  
 # MED --------------------------------------------------------------------------------------------
  if [ $word == 'med'  ]; then
+   export COMPLETED=0
    if [ $fast == 'no' ]; then 
      dialog --title "requirements" --msgbox " med required packages: none " 10 50
    fi
    clear
    cd $BUILD_DIR
    source install_scripts/med.sh 3.3.1
-   if [ $fast == 'no' ]; then 
-     dialog --title "Done installing" --msgbox " med is installed" 10 50
+   if [ $COMPLETED == '0' ]; then
+     if [ $fast == 'no' ]; then 
+       dialog --title "Done installing" --msgbox " med is installed" 10 50
+     fi
+   else
+     dialog --title "Unable to install" --msgbox " For details check logs in \n $INSTALL_PLAT_LOG_DIR \n directory" 10 50
+     clear
+     return
    fi
  fi
  
  
 # MED_coupling -------------------------------------------------------------------------------------------- 
  if [ $word == 'medCoupling'  ]; then
+   export COMPLETED=0
    if [ $fast == 'no' ]; then 
      dialog --title "requirements" --msgbox " medCoupling required packages: none " 10 50
    fi
    clear
    cd $BUILD_DIR
    source install_scripts/medCoupling.sh 8.4.0 
-   if [ $fast == 'no' ]; then 
-     dialog --title "Done installing" --msgbox " medCoupling is installed" 10 50
+   if [ $COMPLETED == '0' ]; then
+     if [ $fast == 'no' ]; then 
+       dialog --title "Done installing" --msgbox " medCoupling is installed" 10 50
+     fi
+   else
+     dialog --title "Unable to install" --msgbox " For details check logs in \n $INSTALL_PLAT_LOG_DIR \n directory" 10 50
+     clear
+     return
    fi
  fi
 

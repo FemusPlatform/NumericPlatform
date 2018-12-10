@@ -129,7 +129,7 @@ if [ -f "plat_conf.sh" ]; then
     if [ "$?" != "0" ]; then
       echo -e " 2b ${red}ERROR! Unable to configure${NC}"
       echo -e " 2b ${red}See the log for details${NC}"
-      exit 1
+      return
     fi
     
     # 2c compiling ----------------------------------------------------------------
@@ -138,21 +138,24 @@ if [ -f "plat_conf.sh" ]; then
     if [ "$?" != "0" ]; then
       echo -e " 2c ${red}ERROR! Unable to compile${NC}"
       echo -e " 2c ${red}See the log for details${NC}"
-      exit 1
+      COMPLETED=1
+      return
     fi
     # 2d test---------------------------------------------------------
     echo $SCRIPT_NAME ": 2d testing"
     make test >& $LOGDIR/petsc-dbg_testing.log
     if [ "$?" != "0" ]; then
       echo -e " 2d ${red}ERROR! Unable to run test examples${NC}"
-      exit 1
+      COMPLETED=1
+      return
     fi
     # 2e install---------------------------------------------------------
     echo $SCRIPT_NAME ": 2e installing"
     make install  >& $LOGDIR/petsc-dbg_install.log
     if [ "$?" != "0" ]; then
       echo -e " 2e ${red}ERROR! Unable to install${NC}"
-      exit 1
+      COMPLETED=1
+      return
     fi
     echo $SCRIPT_NAME ": 2 "$PKG_NAME" in debug mode successfully installed!"
     #  end with no problems +++++++++++++++++++++++++++++++++++++++++++++++++
@@ -173,7 +176,7 @@ if [ -f "plat_conf.sh" ]; then
   cd $BUILD_DIR
   if [ "$?" != "0" ]; then
     echo -e " 3 ${red}ERROR! the lib is not available${NC}"
-    exit 1
+    return
   fi
   echo
   

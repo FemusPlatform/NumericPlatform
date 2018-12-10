@@ -78,12 +78,20 @@ if [  -f  "plat_conf.sh"  ]; then
     # COMPILE ==================================================================================================
     echo ${SCRIPT_NAME} ": 2c Configuration ended, now compiling"
     make -j2 >&  $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_compile.log
-    if [ "$?" != "0" ];then echo -e " 2b${red}ERROR! Unable to compile, see the log${NC}";fi
+    if [ "$?" != "0" ];then
+      echo -e " 2b${red}ERROR! Unable to compile, see the log${NC}"
+      COMPLETED=1
+      return
+    fi
       
     # MAKE INSTALL =============================================================================================
     echo ${SCRIPT_NAME} ": 2d Compilation ended now installing"
     make install >& $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_install.log
-    if [ "$?" != "0" ];then echo -e " 2b${red}ERROR! Unable to install, see the log${NC}";fi
+    if [ "$?" != "0" ];then
+      echo -e " 2b${red}ERROR! Unable to install, see the log${NC}"
+      COMPLETED=1
+      return
+    fi
       
     echo ${SCRIPT_NAME} ": successfully installed! in " $INSTALL_PLAT_PKG_DIR
 

@@ -29,6 +29,7 @@ echo "Current linux distribution is: $DISTRO" >> requirements.log
 
 check_executable dialog
 check_executable gcc
+check_executable g++
 
 
 echo
