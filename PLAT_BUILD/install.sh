@@ -13,8 +13,14 @@ source gui_guide.sh # contains show_guide
 source gui_install_package.sh # contains show_install
 # ===================================================================================
 
-source ../plat_conf.sh
-
+if [ -f '../plat_conf.sh' ]; then
+  source ../plat_conf.sh
+else
+  echo "Shell script PLAT_BUILD/plat_conf.sh not found "
+  echo "Please run SeUpPlatform "
+fi  
+  
+  
 # Store menu options selected by the user
 INPUT=/tmp/menu.sh.$$
 # Storage file for displaying cal and date command output
