@@ -13,7 +13,16 @@ source gui_guide.sh # contains show_guide
 source gui_install_package.sh # contains show_install
 # ===================================================================================
 
+export REQUIREMENTS_SATISFIED=0
 source install_scripts/requirements.sh
+
+echo "Check requirements completed "
+if [ $REQUIREMENTS_SATISFIED == '1' ]; then
+   echo "Requirements not satisfied"
+   echo "Please install missing packages to continue installation"
+   return;
+fi
+read -p "Press enter to continue installation"
 
 if [ -f '../plat_conf.sh' ]; then
   source ../plat_conf.sh

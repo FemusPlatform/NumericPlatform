@@ -1,7 +1,7 @@
 # #############################################################################
 # Utility
 # #############################################################################
-red=`tput setaf 1`; bold=`tput bold `; green=`tput setaf 2`; reset=`tput sgr0`
+red=`tput setaf 1`; bold=`tput bold `; green=`tput setaf 2`; reset=`tput sgr0`; NC=`tput sgr0`
 
 # ==============================================================================
 function setting_env {
