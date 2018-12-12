@@ -56,6 +56,7 @@ export PATH=$FEMUS_DIR/bin/:$PATH
 export PATH=$FEMUS_DIR/:$PATH
 export LD_LIBRARY_PATH=$FEMUS_DIR/contrib/laspack:$LD_LIBRARY_PATH  #only for VOF
 export LD_LIBRARY_PATH=$FEMUS_DIR/lib:$LD_LIBRARY_PATH  
+source $FEMUS_DIR/femus.sh
 
 # libmesh
 export LIBMESH_PATH=$PLAT_DIR/PLAT_CODES/libmesh/
@@ -63,3 +64,18 @@ export LD_LIBRARY_PATH=$LIBMESH_PATH/lib64/:$LD_LIBRARY_PATH
 
 # openfoam
 #fe40
+
+# =====================================================
+#                    LEVEL 2 - VISU
+# =====================================================
+
+# Paraview with med
+export PARAVIEW_LOADED=0
+function plat_paraview () {
+  if [ $PARAVIEW_LOADED == 0 ] ; then 
+    source $PLAT_THIRD_PARTY_DIR/salome/salome_prerequisites.sh
+    source $PLAT_THIRD_PARTY_DIR/salome/salome_modules.sh
+    PARAVIEW_LOADED=1
+  fi
+    paraview &
+}

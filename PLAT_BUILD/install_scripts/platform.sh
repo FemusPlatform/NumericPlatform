@@ -112,5 +112,5 @@ fi
 #
 # ADDING NumericPlatform ALIAS TO ~/.bashrc
 #
-echo "NumericPlatform='export MYHOME=$PLAT_DIR && cd $MYHOME && source plat_conf.sh '" >> ~/.bashrc
+echo "alias NumericPlatform='export MYHOME=$PLAT_DIR && cd \$MYHOME && source plat_conf.sh && cd -'" >> ~/.bashrc
  
