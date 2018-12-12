@@ -43,13 +43,22 @@ cd $PLAT_CODES_DIR
   echo "Compiling femus library for 2D geometry "
   cd $PLAT_CODES_DIR/femus/applications/lib_femus2D
   configure_application opt
+  # removing libfemus_2d.so
+  make clean
+  # removing object files from femus/src
   make src_clean
   make 
   
   echo "Compiling femus library for 3D geometry "
   cd $PLAT_CODES_DIR/femus/applications/lib_femus3D
   configure_application opt
+  # removing libfemus_2d.so
+  make clean
+  # removing object files from femus/src
   make src_clean
-  make
+  make 
+  
+  # cleaning after lib building
+  make src_clean
 
 cd $BUILD_DIR

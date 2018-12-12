@@ -7,25 +7,24 @@ function  command_exists () {
 function check_executable () { 
   if command_exists $1 ; then
     echo "Check $1: ${green}$1 present ${NC}" 
-    echo "Check $1: $1 present " >> requirements.log
+    echo "Check $1: $1 present " >> plat_requirements.log
   else
     echo "Check $1: ${red}$1 missing ${NC}"
-    echo "Check $1: $1 missing " >> requirements.log
+    echo "Check $1: $1 missing " >> plat_requirements.log
     REQUIREMENTS_SATISFIED=1
   fi
 }
 
-if [ -f "requirements.log" ]; then
-  rm requirements.log
+
+if [ -f "plat_requirements.log" ]; then
+  rm plat_requirements.log
+  echo deleted plat_requirements.log
 fi  
 
 echo "Check linux distribution " 
-echo "Check linux distribution " >> requirements.log
-export distro=$(lsb_release -i)
-export DISTRO=${distro:16}
-
-echo "Current linux distribution is: $DISTRO"
-echo "Current linux distribution is: $DISTRO" >> requirements.log
+echo "Check linux distribution " >> plat_requirements.log
+cat /etc/*-release
+cat /etc/*-release >> plat_requirements.log
 
 check_executable dialog
 check_executable gcc
