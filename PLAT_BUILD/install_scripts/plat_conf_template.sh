@@ -71,7 +71,7 @@ export LD_LIBRARY_PATH=$LIBMESH_PATH/lib64/:$LD_LIBRARY_PATH
 
 # Paraview with med
 export PARAVIEW_LOADED=0
-function plat_paraview () {
+function platParaview () {
   if [ $PARAVIEW_LOADED == 0 ] ; then 
     source $PLAT_THIRD_PARTY_DIR/salome/salome_prerequisites.sh
     source $PLAT_THIRD_PARTY_DIR/salome/salome_modules.sh
