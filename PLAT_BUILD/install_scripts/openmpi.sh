@@ -33,19 +33,19 @@ if [ -f "plat_conf.sh" ]; then
   INSTALL_BUILD_TAR_DIR=$BUILD_DIR/$TAR_DIR
   INSTALL_PLAT_LOG_DIR=$BUILD_DIR/$LOG_DIR
    
-  echo " Getting the evironment Platform set up 1 Level directory from   plat_conf.sh script"      >& $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_config.log
-  echo "-----------------------------------------------------------------------------------------" >& $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_config.log
-  echo $SCRIPT_NAME ": 1c PLAT_DIR (platform or software or ...) is     = " $PLAT_DIR              >& $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_config.log
-  echo                                                                                             >& $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_config.log
-  echo $SCRIPT_NAME ": 1c BUILD dir (BUILD_DIR) is                      = " $BUILD_DIR             >& $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_config.log
-  echo $SCRIPT_NAME ": 1c INSTALL_BUILD_TAR_DIR (package archive dir)   = " $INSTALL_BUILD_TAR_DIR >& $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_config.log
-  echo $SCRIPT_NAME ": 1c INSTALL_PLAT_LOG_DIR  (log dir)               = " $INSTALL_PLAT_LOG_DIR  >& $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_config.log
-  echo                                                                                             >& $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_config.log
-  echo $SCRIPT_NAME ": 1c PLAT_THIRD_PARTY_DIR  (third party code dir)  = " $PLAT_THIRD_PARTY_DIR  >& $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_config.log
-  echo $SCRIPT_NAME ": 1c PLAT_USERS_DIR  (users dir)                   = " $PLAT_USERS_DIR        >& $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_config.log
-  echo $SCRIPT_NAME ": 1c PLAT_CODES_DIR  (codes dir)                   = " $PLAT_CODES_DIR        >& $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_config.log
-  echo $SCRIPT_NAME ": 1c PLAT_VISU  (visualization dir)                = " $PLAT_VISU_DIR         >& $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_config.log
-  echo "-----------------------------------------------------------------------------------------" >& $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_config.log
+  echo " Getting the evironment Platform set up 1 Level directory from   plat_conf.sh script"      
+  echo "-----------------------------------------------------------------------------------------" 
+  echo $SCRIPT_NAME ": 1c PLAT_DIR (platform or software or ...) is     = " $PLAT_DIR              
+  echo                                                                                             
+  echo $SCRIPT_NAME ": 1c BUILD dir (BUILD_DIR) is                      = " $BUILD_DIR             
+  echo $SCRIPT_NAME ": 1c INSTALL_BUILD_TAR_DIR (package archive dir)   = " $INSTALL_BUILD_TAR_DIR 
+  echo $SCRIPT_NAME ": 1c INSTALL_PLAT_LOG_DIR  (log dir)               = " $INSTALL_PLAT_LOG_DIR  
+  echo                                                                                             
+  echo $SCRIPT_NAME ": 1c PLAT_THIRD_PARTY_DIR  (third party code dir)  = " $PLAT_THIRD_PARTY_DIR  
+  echo $SCRIPT_NAME ": 1c PLAT_USERS_DIR  (users dir)                   = " $PLAT_USERS_DIR        
+  echo $SCRIPT_NAME ": 1c PLAT_CODES_DIR  (codes dir)                   = " $PLAT_CODES_DIR        
+  echo $SCRIPT_NAME ": 1c PLAT_VISU  (visualization dir)                = " $PLAT_VISU_DIR         
+  echo "-----------------------------------------------------------------------------------------" 
    
   
   INSTALL_PLAT_PKG_DIR=$BUILD_DIR/$PKG_NAME
