@@ -83,9 +83,9 @@ source $FEMUS_DIR/femus.sh
 echo "  "
 echo "FEMUS  " code is installed: " environment is set (source PLAT_CODES/femus/femus.sh)" 
 echo "                              available environment functions:"
-echo "                                      femus_configureApplication"
+echo "                                      femus_application_configure"
 echo "                                      femus_show_compiling_functions"
-echo "                                      femus_compileGencase"
+echo "                                      femus_gencase_compile"
 echo "                                      femus_show_application_functions"
 echo "                                      femus_.........................."
 echo "                                      $>femus_  tab -> to see the functions"
@@ -118,12 +118,12 @@ else
 echo "DRDONJ " code not installed 
 fi
 
-CATHARE_PATH=$PLAT_DIR/PLAT_CODES/cathare
-if [ -d "$CATHARE_PATH" ]; then
-echo "CATHARE" code is installed
-else
-echo "CATHARE" code is not installed 
-fi
+# CATHARE_PATH=$PLAT_DIR/PLAT_CODES/cathare
+# if [ -d "$CATHARE_PATH" ]; then
+# echo "CATHARE" code is installed: please run cat_conf.sh to set env of Cathare 
+# else
+# echo "CATHARE" code is not installed 
+# fi
 
 # =====================================================
 #                    LEVEL 2 - VISU
