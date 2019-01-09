@@ -40,12 +40,12 @@ cd $PLAT_CODES_DIR
   cd $PLAT_CODES_DIR/femus
   source femus.sh
   
-  compileLibrary
+  femus_FEMuS_compile_lib  
   
   # Link src folder in gencase_2d and gencase_3d applications
   # all gencase applications see the same src/
   ln -s $FEMUS_DIR/applications/gencase/src/ $FEMUS_DIR/applications/gencase/gencase_2d/
   ln -s $FEMUS_DIR/applications/gencase/src/ $FEMUS_DIR/applications/gencase/gencase_3d/
-  compileGencase
+  femus_gencase_compile_lib
 
 cd $BUILD_DIR
