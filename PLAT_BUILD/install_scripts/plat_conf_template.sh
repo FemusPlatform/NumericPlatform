@@ -140,6 +140,5 @@ function platParaview () {
     paraview &
 }
 
-cd $PLAT_DIR
 
 
