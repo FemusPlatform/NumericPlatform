@@ -1,7 +1,7 @@
 export DefaultLatest="latest"
 
 # SALOME
-export SalomeLast="8.4.0"
+export SalomeLast="9.2.0"
 export SalomeLastest="8.5.0"
 
 # OPENMPI

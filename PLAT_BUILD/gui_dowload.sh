@@ -15,9 +15,9 @@ $DIALOG --backtitle "Software platform download" \
         --checklist "
 Press SPACE to toggle an option on/off. \n\n\
   Check on the package to Dowload" 23 50 13 \
-        "med"              "3.3.1"   ON  \
-        "medCoupling"      "8.4.0"   ON  \
-        "SALOME"           "8_4_0"   ON  \
+        "med"              "4.0.0"   ON  \
+        "medCoupling"      "9.2.0"   ON  \
+        "SALOME"           "9_2_0"   ON  \
         "openmpi"          "3.1.3"   ON  \
         "fblaslapack"      "3.4.2"   ON  \
         "petsc"            "3.10.2"  ON  \
@@ -53,46 +53,46 @@ msg_dialog=""
 
 for word in $choiced; do 
 
- # SALOME 8.4.0 ---------------------------------------------------------------------------------------------
+ # SALOME 9.2.0 ---------------------------------------------------------------------------------------------
  if [ $word == 'SALOME' ]; then
  if [ $fast == 'no' ]; then 
  dialog --title "Downloading SALOME" --msgbox "Now we are downloading SALOME: no other packages required " 10 50 
  fi
-   wget --progress=dot 'https://www.salome-platform.org/downloads/previous-versions/salome-v8.4.0/DownloadDistr?platform=UniBinNew2&version=8.4.0_64bit' \
+   wget --progress=dot 'https://www.salome-platform.org/downloads/current-version/DownloadDistr?platform=UniBinNew2&version=9.2.0_64bit' \
    2>&1 | grep "%" | sed -u -e "s,\.,,g" | awk '{print $2}' | sed -u -e "s,\%,,g" \
    | dialog --gauge "We are downloading SALOME" 10 100
    if [ $fast == 'no' ]; then 
-   dialog --title "Done downloading" --msgbox "Salome-V8_4_0.run.tar.gz dowloaded from https://www.salome-platform.org/downloads" 10 50
+   dialog --title "Done downloading" --msgbox "Salome-V9_2_0.run.tar.gz dowloaded from https://www.salome-platform.org/downloads" 10 50
     fi
-    mv DownloadDistr?platform=UniBinNew2\&version=8.4.0_64bit packages_targz/Salome-V8_4_0-univ_public.run
+    mv DownloadDistr?platform=UniBinNew2\&version=9.2.0_64bit packages_targz/Salome-V9.2.0-univ_public.run
 #    echo 
  fi
-  # med 3.3.1 ---------------------------------------------------------------------------------------------
+  # med 4.0.0 ---------------------------------------------------------------------------------------------
  if [ $word == 'med' ]; then
  if [ $fast == 'no' ]; then 
  dialog --title "Downloading med" --msgbox "Now we are downloading med: no other packages required " 10 50 
  fi
-   wget --progress=dot files.salome-platform.org/Salome/other/med-3.3.1.tar.gz \
+   wget --progress=dot files.salome-platform.org/Salome/other/med-4.0.0.tar.gz \
    2>&1 | grep "%" | sed -u -e "s,\.,,g" | awk '{print $2}' | sed -u -e "s,\%,,g" \
    | dialog --gauge "We are downloading med" 10 100
    if [ $fast == 'no' ]; then 
-   dialog --title "Done downloading" --msgbox "med-3.3.1.tar.gz dowloaded from files.salome-platform.org/Salome/other/med-3.3.1.tar.gz" 10 50
+   dialog --title "Done downloading" --msgbox "med-4.0.0.tar.gz dowloaded from files.salome-platform.org/Salome/other/med-4.0.0.tar.gz" 10 50
     fi
-    mv med-3.3.1.tar.gz packages_targz/med-3.3.1.tar.gz
+    mv med-4.0.0.tar.gz packages_targz/med-4.0.0.tar.gz
 #    echo 
  fi
-   # MED_coupling 8.4.0 ---------------------------------------------------------------------------------------------
+   # MED_coupling 9.2.0 ---------------------------------------------------------------------------------------------
  if [ $word == 'medCoupling' ]; then
  if [ $fast == 'no' ]; then 
  dialog --title "Downloading medCoupling" --msgbox "Now we are downloading medCoupling no other packages required " 10 50 
  fi
-   wget --progress=dot files.salome-platform.org/Salome/other/medCoupling-8.4.0.tar.gz \
+   wget --progress=dot files.salome-platform.org/Salome/other/medCoupling-9.2.0.tar.gz \
    2>&1 | grep "%" | sed -u -e "s,\.,,g" | awk '{print $2}' | sed -u -e "s,\%,,g" \
    | dialog --gauge "We are downloading medCoupling" 10 100
    if [ $fast == 'no' ]; then 
-   dialog --title "Done downloading" --msgbox "medCoupling-8.4.0.tar.gz dowloaded from files.salome-platform.org/Salome/other/medCoupling-8.4.0.tar.gz" 10 50
+   dialog --title "Done downloading" --msgbox "medCoupling-9.2.0.tar.gz dowloaded from files.salome-platform.org/Salome/other/medCoupling-9.2.0.tar.gz" 10 50
     fi
-    mv medCoupling-8.4.0.tar.gz packages_targz/medCoupling-8.4.0.tar.gz
+    mv medCoupling-9.2.0.tar.gz packages_targz/medCoupling-9.2.0.tar.gz
 #    echo 
  fi
  

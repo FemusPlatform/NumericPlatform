@@ -26,8 +26,8 @@ $DIALOG --backtitle "Software platform" \
         "openmpi"          "$OpenmpiLast"  off  \
         "petsc-dbg"        "$PetscLast" off  \
         "petsc-opt"        "$PetscLast" off  \
-        "med"              "3.3.1"  off  \
-        "medCoupling"      "8.4.0"  off  2> $tempfile
+        "med"              "4.0.0"  off  \
+        "medCoupling"      "9.2.0"  off  2> $tempfile
 
 retval=$?
 # choice=`cat $tempfile`
@@ -58,7 +58,7 @@ for word in $choice; do
    fi
    clear
    cd $BUILD_DIR
-   source install_scripts/salome.sh $SalomeOption
+   source install_scripts/salome9.sh $SalomeOption
    if [ $fast == 'no' ]; then 
      dialog --title "Done installing" --msgbox " SALOME is installed" 10 50
    fi
@@ -167,7 +167,7 @@ for word in $choice; do
    fi
    clear
    cd $BUILD_DIR
-   source install_scripts/med.sh 3.3.1
+   source install_scripts/med4.sh 4.0.0
    if [ $COMPLETED == '0' ]; then
      if [ $fast == 'no' ]; then 
        dialog --title "Done installing" --msgbox " med is installed" 10 50
@@ -188,7 +188,7 @@ for word in $choice; do
    fi
    clear
    cd $BUILD_DIR
-   source install_scripts/medCoupling.sh 8.4.0 
+   source install_scripts/medCoupling9.sh 9.2.0 
    if [ $COMPLETED == '0' ]; then
      if [ $fast == 'no' ]; then 
        dialog --title "Done installing" --msgbox " medCoupling is installed" 10 50
