@@ -96,36 +96,36 @@ if [ $PLAT_DIR == "" ]; then
  echo  " searching .. "  $INSTALL_BUILD_TAR_DIR/${DOWNLOAD_PKG}_public.run
    
  # check existance in packages_targz directory -----------------------------------------------------------------
-#  if [ ! -f packages_targz/Salome-V$CompleteVersion-univ_public.run ] ; then ok=0; 
-#         wget --progress=dot 'https://www.salome-platform.org/downloads/current-version/DownloadDistr?platform=UniBinNew2&version='$CompleteVersion'_64bit' \
-#         2>&1 | grep "%" | sed -u -e "s,\.,,g" | awk '{print $2}' | sed -u -e "s,\%,,g" \
-#         | dialog --gauge "We are downloading SALOME" 10 100
-#        clear
-# #        if [ '$fast' == 'no' ]; then 
-# #          dialog --title "Done downloading" --msgbox "Salome-V"$1".run dowloaded from https://www.salome-platform.org/downloads" 10 50
-# #          clear
-# #  echo moving ...to $INSTALL_BUILD_TAR_DIR/${DOWNLOAD_PKG}_public.run
-#  mv DownloadDistr?platform=UniBinNew2\&version=$1_64bit packages_targz/Salome-V$CompleteVersion-univ_public.run
-#  fi;
-   # ---------------------------------------------------------------------------------------------------
+ if [ ! -f packages_targz/Salome-V$CompleteVersion-univ_public.run ] ; then ok=0; 
+        wget --progress=dot 'https://www.salome-platform.org/downloads/current-version/DownloadDistr?platform=UniBinNew2&version='$CompleteVersion'_64bit' \
+        2>&1 | grep "%" | sed -u -e "s,\.,,g" | awk '{print $2}' | sed -u -e "s,\%,,g" \
+        | dialog --gauge "We are downloading SALOME" 10 100
+       clear
+#        if [ '$fast' == 'no' ]; then 
+#          dialog --title "Done downloading" --msgbox "Salome-V"$1".run dowloaded from https://www.salome-platform.org/downloads" 10 50
+#          clear
+#  echo moving ...to $INSTALL_BUILD_TAR_DIR/${DOWNLOAD_PKG}_public.run
+ mv DownloadDistr?platform=UniBinNew2\&version=$1_64bit packages_targz/Salome-V$CompleteVersion-univ_public.run
+ fi;
+#    ---------------------------------------------------------------------------------------------------
 #     $INSTALL_BUILD_TAR_DIR/Salome-V9_2_0-univ_public.run ->
-#  if [ -f $INSTALL_BUILD_TAR_DIR/${DOWNLOAD_PKG}_public.run ] ; then ok=1; 
-#        echo  " copy "  $INSTALL_BUILD_TAR_DIR/${DOWNLOAD_PKG}_public.run
-#     cp  $INSTALL_BUILD_TAR_DIR/${DOWNLOAD_PKG}_public.run  ./ ; 
-#  fi 
+ if [ -f $INSTALL_BUILD_TAR_DIR/${DOWNLOAD_PKG}_public.run ] ; then ok=1; 
+       echo  " copy "  $INSTALL_BUILD_TAR_DIR/${DOWNLOAD_PKG}_public.run
+    cp  $INSTALL_BUILD_TAR_DIR/${DOWNLOAD_PKG}_public.run  ./ ; 
+ fi 
 #   -----------------------------------------------------------------------
 #   Salome-V9_2_0-univ_public.run.tar.gz
-#   if [ -f $INSTALL_BUILD_TAR_DIR/${PKG_NAME}_public.run.tar.gz ] ; then ok=1; 
-#       echo  " exctract " $INSTALL_BUILD_TAR_DIR/${PKG_NAME}_public.run.tar.gz
-#       tar -xzvf $INSTALL_BUILD_TAR_DIR/${PKG_NAME}_public.run.tar.gz;   
-#  fi
+  if [ -f $INSTALL_BUILD_TAR_DIR/${PKG_NAME}_public.run.tar.gz ] ; then ok=1; 
+      echo  " exctract " $INSTALL_BUILD_TAR_DIR/${PKG_NAME}_public.run.tar.gz
+      tar -xzvf $INSTALL_BUILD_TAR_DIR/${PKG_NAME}_public.run.tar.gz;   
+ fi
 #   -------------------------------------------------------------------------------
-#  if [ ${ok} == 1 ]; then     
-#      echo $SCRIPT_NAME " 2 ->  2a install -> 2c links"
-#      # 2a installing  --------------------------------------------------------------
-#      echo $SCRIPT_NAME " 2a Now installing "
-#      sh ${DOWNLOAD_PKG}_public.run -t $BUILD_DIR -a $PLAT_VISU_DIR/appli_salome -l ENGLISH
-#  fi
+ if [ ${ok} == 1 ]; then     
+     echo $SCRIPT_NAME " 2 ->  2a install -> 2c links"
+     # 2a installing  --------------------------------------------------------------
+     echo $SCRIPT_NAME " 2a Now installing "
+     sh ${DOWNLOAD_PKG}_public.run -t $BUILD_DIR -a $PLAT_VISU_DIR/appli_salome -l ENGLISH
+ fi
  # B ===============================================================================
 fi
   
