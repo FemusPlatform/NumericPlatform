@@ -40,6 +40,20 @@ cd $PLAT_CODES_DIR
   cd $PLAT_CODES_DIR/femus
   source femus.sh
   
+  if [ -d $PLAT_CODES_DIR/femus/solvers/ln_solvers/ ]; then
+    rm -r $PLAT_CODES_DIR/femus/solvers/ln_solvers/
+  fi
+  
+  mkdir $PLAT_CODES_DIR/femus/solvers/ln_solvers/
+  cd $PLAT_CODES_DIR/femus/solvers/
+  
+  unset SOLVERS
+  export SOLVERS=$(ls  $PLAT_CODES_DIR/femus/solvers/ | grep "MG" )
+  for solver in $SOLVERS; do
+      ln -s $PLAT_CODES_DIR/femus/solvers/$solver/*.h $PLAT_CODES_DIR/femus/solvers/ln_solvers/
+      ln -s $PLAT_CODES_DIR/femus/solvers/$solver/*.C $PLAT_CODES_DIR/femus/solvers/ln_solvers/
+  done 
+  
   femus_FEMuS_compile_lib  
   
   # Link src folder in gencase_2d and gencase_3d applications
