@@ -104,7 +104,7 @@ else
 echo "LIBMESH" code not installed 
 fi
 # openfoam
-OF_PATH=$PLAT_DIR/PLAT_CODES/foam
+export OF_PATH=$PLAT_DIR/PLAT_CODES/foam
 if [ -d "$OF_PATH" ]; then
 echo "OpFOAM " code is installed: please run fe40 to set env of  OpenFoam
 else
@@ -113,6 +113,7 @@ fi
 
 DD_PATH=$PLAT_DIR/PLAT_CODES/dragondonjon
 if [ -d "$DD_PATH" ]; then
+export DD_PATH=$PLAT_DIR/PLAT_CODES/dragondonjon
 echo "DRDONJ " code is installed
 else
 echo "DRDONJ " code not installed 
