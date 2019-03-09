@@ -13,6 +13,8 @@ BUILD_DIR=$PWD
 cd ../                  # back to Numerical Platform main directory - Level 0
 source plat_conf.sh     # set up environment
 
+FEMUS_DIR=$PLAT_CODES_DIR/femus/
+
 # =============================================================================
 # 1) ENVIRONMENT
 # =============================================================================
