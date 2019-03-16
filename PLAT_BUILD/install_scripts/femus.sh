@@ -13,7 +13,7 @@ BUILD_DIR=$PWD
 cd ../                  # back to Numerical Platform main directory - Level 0
 source plat_conf.sh     # set up environment
 
-FEMUS_DIR=$PLAT_CODES_DIR/femus/
+export FEMUS_DIR=$PLAT_CODES_DIR/femus/
 
 # =============================================================================
 # 1) ENVIRONMENT
@@ -42,26 +42,15 @@ cd $PLAT_CODES_DIR
   cd $PLAT_CODES_DIR/femus
   source femus.sh
   
-  if [ -d $PLAT_CODES_DIR/femus/solvers/ln_solvers/ ]; then
-    rm -r $PLAT_CODES_DIR/femus/solvers/ln_solvers/
-  fi
+  femus_link_solver_files
   
-  mkdir $PLAT_CODES_DIR/femus/solvers/ln_solvers/
-  cd $PLAT_CODES_DIR/femus/solvers/
-  
-  unset SOLVERS
-  export SOLVERS=$(ls  $PLAT_CODES_DIR/femus/solvers/ | grep "MG" )
-  for solver in $SOLVERS; do
-      ln -s $PLAT_CODES_DIR/femus/solvers/$solver/*.h $PLAT_CODES_DIR/femus/solvers/ln_solvers/
-      ln -s $PLAT_CODES_DIR/femus/solvers/$solver/*.C $PLAT_CODES_DIR/femus/solvers/ln_solvers/
-  done 
-  
-  femus_FEMuS_compile_lib  
+  femus_FEMuS_compile_lib_opt -j2  
   
   # Link src folder in gencase_2d and gencase_3d applications
   # all gencase applications see the same src/
   ln -s $FEMUS_DIR/applications/gencase/src/ $FEMUS_DIR/applications/gencase/gencase_2d/
   ln -s $FEMUS_DIR/applications/gencase/src/ $FEMUS_DIR/applications/gencase/gencase_3d/
-  femus_gencase_compile_lib
+  
+  femus_gencase_compile_lib -j2
 
 cd $BUILD_DIR
