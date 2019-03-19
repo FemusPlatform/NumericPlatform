@@ -81,7 +81,9 @@ if [ -f "plat_conf.sh" ]; then
      cd $INSTALL_PLAT_PKG_DIR
      # 2b configure ---------------------------------------------------------------------------------------------
      echo ${SCRIPT_NAME} ": 2b starting configure command" 
-     ./configure --prefix=$PLAT_THIRD_PARTY_DIR/${PKG_NAME} >& $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_config.log
+     ./configure --prefix=$PLAT_THIRD_PARTY_DIR/${PKG_NAME} \
+                 --libdir=$PLAT_THIRD_PARTY_DIR/${PKG_NAME}/lib \
+                 >& $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_config.log
      if [ "$?" != "0" ]; then 
         COMPLETED=1
         echo -e " 2b${red}ERROR! Unable to configure, see the log${NC}" 
@@ -116,12 +118,12 @@ if [ -f "plat_conf.sh" ]; then
    
    
    
-  # ============================================================================================================
-  # 3 post install =============================================================================================
-  # ============================================================================================================
+#   # ============================================================================================================
+#   # 3 post install =============================================================================================
+#   # ============================================================================================================
   cd $BUILD_DIR
   if [ "$?" != "0" ];then echo -e "3a ${red}ERROR! installation dir not here ${NC}";exit 1;fi
-  
+#   
   echo; echo ${SCRIPT_NAME} " 3 -> 3a links -> 3b ${SCRIPT_NAME} usage commands"
   # 3a link ----------------------------------------------------------------------------------------------------
   
@@ -134,13 +136,9 @@ if [ -f "plat_conf.sh" ]; then
   
   ln -s $PLAT_THIRD_PARTY_DIR/${PKG_NAME}  $PLAT_THIRD_PARTY_DIR/${SCRIPT_NAME};
   echo ${SCRIPT_NAME} ": 3a ln -s" $PLAT_THIRD_PARTY_DIR/${PKG_NAME}   $PLAT_THIRD_PARTY_DIR/${SCRIPT_NAME}
-  if [ -d $PLAT_THIRD_PARTY_DIR/${SCRIPT_NAME}/lib ] 
-    then 
-    rm -r $PLAT_THIRD_PARTY_DIR/${SCRIPT_NAME}/lib 
-    echo "ln deleted"
-  fi
-  ln -s $PLAT_THIRD_PARTY_DIR/${SCRIPT_NAME}/lib64  $PLAT_THIRD_PARTY_DIR/${SCRIPT_NAME}/lib 
-  echo ${SCRIPT_NAME} ": 3a ln -s" $PLAT_THIRD_PARTY_DIR/${SCRIPT_NAME}/lib64  $PLAT_THIRD_PARTY_DIR/${SCRIPT_NAME}/lib; 
+
+  ln -s $PLAT_THIRD_PARTY_DIR/${SCRIPT_NAME}/lib  $PLAT_THIRD_PARTY_DIR/${SCRIPT_NAME}/lib64
+  echo ${SCRIPT_NAME} ": 3a ln -s" $PLAT_THIRD_PARTY_DIR/${SCRIPT_NAME}/lib  $PLAT_THIRD_PARTY_DIR/${SCRIPT_NAME}/lib64; 
   
   # 3b Print comment how to use it -----------------------------------------------------------------------------
   echo " ${green}3b We add to plat_conf.sh the path the ${SCRIPT_NAME} executables and libraries  to use it: "

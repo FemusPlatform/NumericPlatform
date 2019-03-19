@@ -107,6 +107,7 @@ if [ ! -d $INSTALL_BUILD_PKG_DIR ];   then
   echo ${SCRIPT_NAME} ": 2b starting configure command" 
   
   ./configure --prefix=$INSTALL_PLAT_PKG_DIR \
+              --libdir=$INSTALL_PLAT_PKG_DIR/lib \
               --with-mpi-dir=$INSTALL_DIR/openmpi \
               --with-hdf5=$INSTALL_DIR/hdf5 \
               --with-methods="dbg opt" >& $INSTALL_PLAT_LOG_DIR/${SCRIPT_NAME}_config.log
@@ -139,9 +140,8 @@ if [ "$?" != "0" ]; then   echo -e " 2e ${red}ERROR!  libmesh installation not a
 echo; echo ${SCRIPT_NAME} " 3: "$PKG_NAME"  post install"; echo ${SCRIPT_NAME} " 3 script -> 3a liks "
 
 # 3a links --------------------------------------------------------------------
-if [ -d $INSTALL_PLAT_PKG_DIR/lib ]; then rm -r $INSTALL_PLAT_PKG_DIR/lib; echo "ln deleted";fi
-ln -s $INSTALL_PLAT_PKG_DIR/lib64  $INSTALL_PLAT_PKG_DIR/lib; echo ${SCRIPT_NAME} " 3a ${SCRIPT_NAME} link lib "
-echo ln -s $INSTALL_PLAT_PKG_DIR/lib64  $INSTALL_PLAT_PKG_DIR/lib; echo ${SCRIPT_NAME} " 3a ${SCRIPT_NAME} link lib "
+ln -s $INSTALL_PLAT_PKG_DIR/lib  $INSTALL_PLAT_PKG_DIR/lib64; echo ${SCRIPT_NAME} " 3a ${SCRIPT_NAME} link lib "
+echo ln -s $INSTALL_PLAT_PKG_DIR/lib  $INSTALL_PLAT_PKG_DIR/lib64; echo ${SCRIPT_NAME} " 3a ${SCRIPT_NAME} link lib "
 
 if [ -d $INSTALL_DIR/libmesh ]; then rm -r $INSTALL_DIR/libmesh; echo "ln deleted"; fi
 ln -s  $INSTALL_PLAT_PKG_DIR    $PLAT_THIRD_PARTY_DIR/libmesh; echo ${SCRIPT_NAME} " 3a link libmesh "
