@@ -27,7 +27,9 @@ $DIALOG --backtitle "Software platform" \
         "petsc-dbg"        "$PetscLast" off  \
         "petsc-opt"        "$PetscLast" off  \
         "med"              "4.0.0"  off  \
-        "medCoupling"      "9.2.0"  off  2> $tempfile
+        "medCoupling"      "9.2.0"  off  \
+        "gmsh"             "4.2.2"  off  \
+        2> $tempfile
 
 retval=$?
 # choice=`cat $tempfile`
@@ -192,6 +194,27 @@ for word in $choice; do
    if [ $COMPLETED == '0' ]; then
      if [ $fast == 'no' ]; then 
        dialog --title "Done installing" --msgbox " medCoupling is installed" 10 50
+     fi
+   else
+     dialog --title "Unable to install" --msgbox " For details check logs in \n $INSTALL_PLAT_LOG_DIR \n directory" 10 50
+     clear
+     return
+   fi
+ fi
+ 
+ 
+ # GMSH -------------------------------------------------------------------------------------------- 
+ if [ $word == 'gmsh'  ]; then
+   export COMPLETED=0
+   if [ $fast == 'no' ]; then 
+     dialog --title "requirements" --msgbox " med " 10 50
+   fi
+   clear
+   cd $BUILD_DIR
+   source install_scripts/gmsh.sh 4.2.2 
+   if [ $COMPLETED == '0' ]; then
+     if [ $fast == 'no' ]; then 
+       dialog --title "Done installing" --msgbox " GMSH is installed" 10 50
      fi
    else
      dialog --title "Unable to install" --msgbox " For details check logs in \n $INSTALL_PLAT_LOG_DIR \n directory" 10 50
