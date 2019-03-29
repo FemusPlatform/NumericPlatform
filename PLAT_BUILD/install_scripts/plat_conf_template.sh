@@ -119,6 +119,14 @@ else
 echo "DRDONJ " code not installed 
 fi
 
+GMSH_PATH=$PLAT_DIR/PLAT_THIRD_PARTY/gmsh/
+if [ -d "$GMSH_PATH" ]; then
+export GMSH_PATH=$PLAT_DIR/PLAT_THIRD_PARTY/gmsh/
+echo "GMSH" code is installed
+else
+echo "GMSH" code not installed
+fi
+
 # CATHARE_PATH=$PLAT_DIR/PLAT_CODES/cathare
 # if [ -d "$CATHARE_PATH" ]; then
 # echo "CATHARE" code is installed: please run cat_conf.sh to set env of Cathare 
@@ -141,5 +149,14 @@ function platParaview () {
     paraview &
 }
 
+function platGmsh () {
+  if [ -d "$PLAT_DIR/PLAT_THIRD_PARTY/gmsh/" ] ; then 
+     cd $GMSH_PATH/bin/
+     ./gmsh &
+     cd -
+  else
+    echo "GMSH not installed "
+  fi
+}
 
 

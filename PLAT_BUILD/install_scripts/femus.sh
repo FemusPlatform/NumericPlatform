@@ -46,6 +46,8 @@ cd $PLAT_CODES_DIR
   
   femus_FEMuS_compile_lib_opt -j2  
   
+  femus_turbulence_compile_lib_opt -j2
+  
   # Link src folder in gencase_2d and gencase_3d applications
   # all gencase applications see the same src/
   ln -s $FEMUS_DIR/applications/gencase/src/ $FEMUS_DIR/applications/gencase/gencase_2d/
