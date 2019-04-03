@@ -19,7 +19,7 @@ The platform is organized into a hierarchical set of levels, namely
 
   * PLAT_VISU: software for post processing and data visualization
 
-  * USERS: level where applications are run
+  * PLAT_USERS: level where applications are run
   
 * Level 2: differentiation of the main components. Up to now the following packages can be installed
 
@@ -40,4 +40,5 @@ The platform is organized into a hierarchical set of levels, namely
   * PLAT_VISU:
       Paraview, as Salome package
   
-  This repository represents Level 0 and it can be used to perform a complete Numerical Platform installation from scratch
+This repository represents Level 0 and it can be used to perform a complete Numerical Platform installation from scratch.
+For a complete platform installation gcc7 and cmake (vesion > 3.10) are required.
