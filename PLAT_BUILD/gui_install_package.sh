@@ -29,6 +29,8 @@ $DIALOG --backtitle "Software platform" \
         "med"              "4.0.0"  off  \
         "medCoupling"      "9.2.0"  off  \
         "gmsh"             "4.2.2"  off  \
+        "qhull"            "2015.2" off  \
+        "lapack"           "3.8.0" off \
         2> $tempfile
 
 retval=$?
@@ -222,6 +224,43 @@ for word in $choice; do
      return
    fi
  fi
+ 
+ # QHULL -------------------------------------------------------------------------------------------- 
+ if [ $word == 'qhull'  ]; then
+   export COMPLETED=0
+   clear
+   cd $BUILD_DIR
+   source install_scripts/qhull.sh 
+   if [ $COMPLETED == '0' ]; then
+     if [ $fast == 'no' ]; then 
+       dialog --title "Done installing" --msgbox " QHULL is installed" 10 50
+     fi
+   else
+     dialog --title "Unable to install" --msgbox " For details check logs in \n $INSTALL_PLAT_LOG_DIR \n directory" 10 50
+     clear
+     return
+   fi
+ fi
+ 
+ # LAPACK -------------------------------------------------------------------------------------------- 
+ if [ $word == 'lapack'  ]; then
+   export COMPLETED=0
+   clear
+   cd $BUILD_DIR
+   source install_scripts/lapack.sh 
+   if [ $COMPLETED == '0' ]; then
+     if [ $fast == 'no' ]; then 
+       dialog --title "Done installing" --msgbox " LAPACK is installed" 10 50
+     fi
+   else
+     dialog --title "Unable to install" --msgbox " For details check logs in \n $INSTALL_PLAT_LOG_DIR \n directory" 10 50
+     clear
+     return
+   fi
+ fi 
+ 
+ 
+ 
 
 done
 dialog --title "Done installation" --msgbox "you have installed: $choice" 8 30
@@ -248,7 +287,9 @@ $DIALOG --backtitle "Software platform" \
         "Libmesh"          "$LibmeshLast"  off  \
         "FEMUs"            "v0"     off  \
         "DragonDonjon"     "v5.02"  off  \
-        "OpenFOAM"         "Extend 4.0" off 2> $tempfile
+        "OpenFOAM"         "Extend 4.0" off \
+        "getfem"           "5.3" off 2> $tempfile
+        
         
 retval=$?
 # choice=`cat $tempfile`
@@ -332,6 +373,19 @@ for word in $choice; do
    source install_scripts/foam_repo.sh
    if [ $fast == 'no' ]; then
      dialog --title "Done installing" --msgbox " OPENFOAM is installed" 10 50
+   fi
+ fi
+ 
+# GETFEM -------------------------------------------------------------------------------------------- 
+ if [ $word == 'getfem'  ]; then
+   if [ $fast == 'no' ]; then
+     dialog --title "requirements" --msgbox " GETFEM required packages: qhull, lapack " 10 50
+   fi
+   clear
+   cd $BUILD_DIR
+   source install_scripts/getfem.sh
+   if [ $fast == 'no' ]; then
+     dialog --title "Done installing" --msgbox " GETFEM is installed" 10 50
    fi
  fi
 

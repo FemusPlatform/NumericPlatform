@@ -42,6 +42,7 @@ echo "PETSC " LIB is installed: environment is set
 else
 echo "PETSC " LIB  not installed 
 fi
+
 # hdf5
 HDF5_DIR=$PLAT_DIR/PLAT_THIRD_PARTY/hdf5
 if [ -d  "$HDF5_DIR" ]; then
@@ -53,6 +54,7 @@ echo "HDF5  " LIB is installed: environment is set
 else
 echo "HDF5  " LIB  not installed 
 fi
+
 # med 
 MED_COUPL_PATH=$PLAT_DIR/PLAT_THIRD_PARTY/MED_coupling
 if [ -d  "$MED_COUPL_PATH" ]; then
@@ -65,6 +67,33 @@ export LD_LIBRARY_PATH=$MED_COUPL_PATH/lib:$LD_LIBRARY_PATH
 echo "MED   " LIB is installed: environment is set 
 else
 echo "MED   " LIB  not installed 
+fi
+
+#qhull
+QHULL_PATH=$PLAT_DIR/PLAT_THIRD_PARTY/qhull
+if [ -d  "$QHULL_PATH" ]; then
+export QHULL_PATH=$PLAT_DIR/PLAT_THIRD_PARTY/qhull
+echo "QHULL   " LIB is installed: environment is set 
+else
+echo "QHULL   " LIB  not installed 
+fi
+
+#lapack
+LAPACK_PATH=$PLAT_DIR/PLAT_THIRD_PARTY/lapack
+if [ -d  "LAPACK_PATH" ]; then
+export LAPACK_PATH=$PLAT_DIR/PLAT_THIRD_PARTY/lapack
+echo "LAPACK   " LIB is installed: environment is set 
+else
+echo "LAPACK   " LIB  not installed 
+fi
+
+#gmsh
+GMSH_PATH=$PLAT_DIR/PLAT_THIRD_PARTY/gmsh/
+if [ -d "$GMSH_PATH" ]; then
+export GMSH_PATH=$PLAT_DIR/PLAT_THIRD_PARTY/gmsh/
+echo "GMSH" code is installed
+else
+echo "GMSH" code not installed
 fi
 
 # =====================================================
@@ -103,14 +132,17 @@ echo "LIBMESH" code is installed: run examples
 else
 echo "LIBMESH" code not installed 
 fi
+
 # openfoam
-export OF_PATH=$PLAT_DIR/PLAT_CODES/foam
+OF_PATH=$PLAT_DIR/PLAT_CODES/foam
 if [ -d "$OF_PATH" ]; then
+export OF_PATH=$PLAT_DIR/PLAT_CODES/foam
 echo "OpFOAM " code is installed: please run fe40 to set env of  OpenFoam
 else
 echo "OpFOAM " code not installed 
 fi
 
+# dragon & donjon
 DD_PATH=$PLAT_DIR/PLAT_CODES/dragondonjon
 if [ -d "$DD_PATH" ]; then
 export DD_PATH=$PLAT_DIR/PLAT_CODES/dragondonjon
@@ -119,20 +151,25 @@ else
 echo "DRDONJ " code not installed 
 fi
 
-GMSH_PATH=$PLAT_DIR/PLAT_THIRD_PARTY/gmsh/
-if [ -d "$GMSH_PATH" ]; then
-export GMSH_PATH=$PLAT_DIR/PLAT_THIRD_PARTY/gmsh/
-echo "GMSH" code is installed
+#getfem
+GETFEM_PATH=$PLAT_DIR/PLAT_CODES/getfem
+if [ -d "$GETFEM_PATH" ]; then
+GETFEM_PATH=$PLAT_DIR/PLAT_CODES/getfem
+export LD_LIBRARY_PATH=$GETFEM_PATH/lib64/:$LD_LIBRARY_PATH
+export PATH=$GETFEM_PATH/bin:$PATH
+echo "GETFEM " code is installed
 else
-echo "GMSH" code not installed
+echo "GETFEM " code not installed 
 fi
 
+#cathare
 # CATHARE_PATH=$PLAT_DIR/PLAT_CODES/cathare
 # if [ -d "$CATHARE_PATH" ]; then
 # echo "CATHARE" code is installed: please run cat_conf.sh to set env of Cathare 
 # else
 # echo "CATHARE" code is not installed 
 # fi
+
 
 # =====================================================
 #                    LEVEL 2 - VISU
@@ -151,9 +188,7 @@ function platParaview () {
 
 function platGmsh () {
   if [ -d "$PLAT_DIR/PLAT_THIRD_PARTY/gmsh/" ] ; then 
-     cd $GMSH_PATH/bin/
-     ./gmsh &
-     cd -
+     $GMSH_PATH/gmsh $* &
   else
     echo "GMSH not installed "
   fi
