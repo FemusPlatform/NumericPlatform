@@ -18,10 +18,10 @@ Press SPACE to toggle an option on/off. \n\n\
         "med"              "4.0.0"   ON  \
         "medCoupling"      "9.2.0"   ON  \
         "SALOME"           "9_2_0"   ON  \
-        "openmpi"          "3.1.3"   ON  \
+        "openmpi"          "3.1.4"   ON  \
         "fblaslapack"      "3.4.2"   ON  \
-        "petsc"            "3.10.2"  ON  \
-        "libmesh"          "1.3.1"   ON  \
+        "petsc"            "3.11.2"  ON  \
+        "libmesh"          "1.4.1"   ON  \
         "FEMUs"            "v0"      ON  \
         "libmeshcpp"       "v0"      off \
         "Paraview"         " "       off \
@@ -102,20 +102,20 @@ for word in $choiced; do
  fi
 #    echo 
  fi
- # Openmpi  3.1.3 ------------------------------------------------------------------------------------------
+ # Openmpi  3.1.4 ------------------------------------------------------------------------------------------
  if [ $word == 'openmpi' ]; then
  if [ $fast == 'no' ]; then 
  dialog --title "We are downloading fblaslapack" --msgbox "Now we are downloading openmpi: no other packages required " 10 50
  fi
-   wget --progress=dot https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.3.tar.gz \
+   wget --progress=dot https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.4.tar.gz \
    2>&1 | grep "%" | sed -u -e "s,\.,,g" | awk '{print $2}' | sed -u -e "s,\%,,g" \
    | dialog --gauge "Download openmpi" 10 100
     if [ $fast == 'no' ]; then 
-   dialog --title "Done downloading" --msgbox "openmpi-3.1.3.tar.gz dowloaded from https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.3.tar.gz" 10 50
+   dialog --title "Done downloading" --msgbox "openmpi-3.1.4.tar.gz dowloaded from https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.4.tar.gz" 10 50
    fi
-   mv openmpi-3.1.3.tar.gz packages_targz/openmpi-3.1.3.tar.gz
+   mv openmpi-3.1.4.tar.gz packages_targz/openmpi-3.1.4.tar.gz
  fi
- # PETSC  3.10.2 ---------------------------------------------------------------------------------------------
+ # PETSC  3.11.2 ---------------------------------------------------------------------------------------------
  if [ $word == 'fblaslapack' ]; then
  
   if [ $fast == 'no' ]; then 
@@ -129,33 +129,33 @@ for word in $choiced; do
       fi
       mv  fblaslapack-3.4.2.tar.gz     packages_targz/fblaslapack-3.4.2.tar.gz
      fi
- # PETSC  3.10.2 ---------------------------------------------------------------------------------------------
+ # PETSC  3.11.2 ---------------------------------------------------------------------------------------------
  if [ $word == 'petsc' ]; then
  
   if [ $fast == 'no' ]; then 
-  dialog --title "Downloading PETSC" --msgbox "Now we are downloading PETSC 3.10.2: fblaslapack and openmpi required" 10 50 fblaslapack-3.4.2
+  dialog --title "Downloading PETSC" --msgbox "Now we are downloading PETSC 3.11.2: fblaslapack and openmpi required" 10 50 fblaslapack-3.4.2
   fi
-     wget --progress=dot http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.10.2.tar.gz \
+     wget --progress=dot http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.11.2.tar.gz \
      2>&1 | grep "%" |  sed -u -e "s,\.,,g" | awk '{print $2}' | sed -u -e  "s,\%,,g" \
-     | dialog --gauge "Download petsc 3.10.2" 10 100
+     | dialog --gauge "Download petsc 3.11.2" 10 100
       if [ $fast == 'no' ]; then 
-     dialog --title "Done downloading" --msgbox "petsc-3.10.2.tar.gz dowloaded from http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.10.2.tar.gz" 10 50
+     dialog --title "Done downloading" --msgbox "petsc-3.11.2.tar.gz dowloaded from http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.11.2.tar.gz" 10 50
      fi
-      mv  petsc-3.10.2.tar.gz    packages_targz/petsc-3.10.2.tar.gz
+      mv  petsc-3.11.2.tar.gz    packages_targz/petsc-3.11.2.tar.gz
   fi
-#  libmesh.sh 1.3.1 -----------------------------------------------------------------------------------------
+#  libmesh.sh 1.4.1 -----------------------------------------------------------------------------------------
  if [ $word == 'libmesh' ]; then
  
   if [ $fast == 'no' ]; then 
-      dialog --title "Dowloading " --msgbox "Now we are downloading libmesh v1.3.1: openmpi and petsc required" 10 50
+      dialog --title "Dowloading " --msgbox "Now we are downloading libmesh v1.4.1: openmpi and petsc required" 10 50
       fi
-      wget --progress=dot https://github.com/libMesh/libmesh/releases/download/v1.3.1/libmesh-1.3.1.tar.gz \
+      wget --progress=dot https://github.com/libMesh/libmesh/releases/download/v1.4.1/libmesh-1.4.1.tar.gz \
        2>&1 | grep "%" |  sed -u -e "s,\.,,g" | awk '{print $2}' | sed -u -e "s,\%,,g" \
-      | dialog --gauge "Download libmesh v1.3.1" 10 100
+      | dialog --gauge "Download libmesh v1.4.1" 10 100
      if [ $fast == 'no' ]; then 
-     dialog --title "Done downloading" --msgbox "libmesh-1.3.1.tar.gz dowloaded: libmesh-1.3.1 from https://github.com/libMesh/libmesh/releases/download/v1.3.1/libmesh-1.3.1.tar.gz" 10 50
+     dialog --title "Done downloading" --msgbox "libmesh-1.4.1.tar.gz dowloaded: libmesh-1.4.1 from https://github.com/libMesh/libmesh/releases/download/v1.4.1/libmesh-1.4.1.tar.gz" 10 50
      fi
-      mv   libmesh-1.3.1.tar.gz packages_targz/libmesh-1.3.1.tar.gz
+      mv   libmesh-1.4.1.tar.gz packages_targz/libmesh-1.4.1.tar.gz
  fi
  #  libmeshcpp.sh v0  ----------------------------------------------------------
  if [ $word == 'libmeshcpp' ]; then
