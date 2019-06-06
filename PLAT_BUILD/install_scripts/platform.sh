@@ -110,7 +110,9 @@ echo   "Wrong directory for this script !!!!! Go to plat_repo (BUILD_DIR) !!!!!!
 fi
  
 #
-# ADDING NumericPlatform ALIAS TO ~/.bashrc
+# ADDING NumericPlatform ALIAS TO ~/.bashrc if not already there
 #
-echo "alias NumericPlatform='export NUPLAT=$PLAT_DIR && cd \$NUPLAT && source plat_conf.sh && cd - '" >> ~/.bashrc
- 
+isThere=`type -t NumericPlatform`
+if [ -z "$isThere" ]; then 
+echo "alias NumericPlatform='export NUPLAT=$PLAT_DIR && cd \$NUPLAT && source plat_conf.sh && cd - '" >> ~/.bashrc;
+else echo "NumericPlatform alias is already in your ~/.bashrc" ; fi 

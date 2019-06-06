@@ -98,8 +98,10 @@ cd $PLAT_CODES_DIR/$FOAM_MAIN
     
     source bashrc
     
-    
+    isThere=`type -t fe40`
+    if [ -z "$isThere" ]; then 
     echo "alias fe40='export MYHOME=$PLAT_CODES_DIR && source $PLAT_CODES_DIR/$FOAM_MAIN/$LN_FOAM_PROJ/etc/bashrc'" >> ~/.bashrc
+    else echo "fe40 alias is already in your ~/.bashrc" ; fi 
     cd ..
     sed -i -e 's=\-L$(OPENMPI.*=$(PLIBS)=' $FOAM_SRC/decompositionMethods/parMetisDecomp/Make/options
     
