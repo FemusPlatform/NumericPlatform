@@ -26,7 +26,7 @@ if [ "$1" == ""  ]; then
   export INSTALL_VERSION="V"$SalMajor"_"$SalMinor"_"$SalPatch
   export DOWNLOAD_PKG=Salome-V$CompleteVersion-univ
 
-  PKG_NAME=Salome-$INSTALL_VERSION-univ
+  PKG_NAME=Salome-$INSTALL_VERSION-x86_64-univ
   SHORT_PKG_NAME=Salome-$INSTALL_VERSION
 
   SALOME_MED_DIR=modules/FIELDS_$INSTALL_VERSION/
@@ -59,7 +59,7 @@ echo $SCRIPT_NAME ": Script set up for "  $SCRIPT_NAME ": 1 -> 1a. base dir -> 1
 INSTALL_PLAT_LOG_DIR=$BUILD_DIR/$LOG_DIR
 INSTALL_BUILD_TAR_DIR=$BUILD_DIR/$TAR_DIR
 # INSTALL_PLAT_PKG_DIR=${BUILD_DIR}/${PKG_NAME}
-INSTALL_PLAT_PKG_DIR=${BUILD_DIR}/${PKG_NAME}_public
+INSTALL_PLAT_PKG_DIR=${BUILD_DIR}/${PKG_NAME}
 
 echo " Getting the evironment Platform set up 1 Level directory from   plat_conf.sh script"
 echo "-----------------------------------------------------------------------------------------"

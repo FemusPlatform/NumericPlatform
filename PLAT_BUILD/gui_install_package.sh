@@ -27,7 +27,7 @@ $DIALOG --backtitle "Software platform" \
         "petsc-dbg"        "$PetscLast" off  \
         "petsc-opt"        "$PetscLast" off  \
         "med"              "4.0.0"  off  \
-        "medCoupling"      "9.2.0"  off  \
+        "medCoupling"      "$SalomeLast"  off  \
         "gmsh"             "4.2.2"  off  \
         "qhull"            "2015.2" off  \
         "lapack"           "3.8.0" off \
@@ -192,7 +192,7 @@ for word in $choice; do
    fi
    clear
    cd $BUILD_DIR
-   source install_scripts/medCoupling9.sh 9.2.0 
+   source install_scripts/medCoupling9.sh $SalomeLast 
    if [ $COMPLETED == '0' ]; then
      if [ $fast == 'no' ]; then 
        dialog --title "Done installing" --msgbox " medCoupling is installed" 10 50

@@ -6,7 +6,7 @@
 # --------------------------------------------------------------------------------------------------
 # ##################################################################################################
 
-PKG_NAME=medCoupling-9.2.0
+PKG_NAME=medCoupling-$1
 PKG_DIR=$PKG_NAME;
 TAR_DIR=packages_targz;
 LOG_DIR=package_logs
@@ -15,7 +15,7 @@ SCRIPT_NAME=medCoupling
 
 PKG_NAME2=PKG_NAME
 # for 9.2.0
-PKG_NAME2=MEDCOUPLING_SRC_9.2.0
+PKG_NAME2=MEDCOUPLING-$1
 
 red=`tput setaf 1`; bold=`tput bold `; green=`tput setaf 2`; reset=`tput sgr0`
 
