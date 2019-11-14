@@ -79,9 +79,12 @@ if [  -f  "plat_conf.sh"  ]; then
     
     # Find Boost from Salome prerequisites  
     export BoostDir=$(find $PLAT_THIRD_PARTY_DIR/salome/prerequisites/ -maxdepth 1 -type d -name 'Boost*' -print -quit)
+    export Libxml2=$(find $PLAT_THIRD_PARTY_DIR/salome/prerequisites/ -maxdepth 1 -type d -name 'Libxml2*' -print -quit)
+#     export Cppunit=$(find $PLAT_THIRD_PARTY_DIR/salome/prerequisites/ -maxdepth 1 -type d -name 'Cppunit*' -print -quit)    
     
     export OPTIONS="-DCMAKE_INSTALL_PREFIX=$INSTALL_PLAT_PKG_DIR   
                     -DBOOST_ROOT_DIR=$BoostDir
+                    -DLIBXML2_ROOT_DIR=$Libxml2
                     -DMEDCOUPLING_PARTITIONER_METIS=OFF 
                     -DMEDCOUPLING_PARTITIONER_SCOTCH=OFF 
                     -DMEDCOUPLING_ENABLE_PYTHON=OFF  

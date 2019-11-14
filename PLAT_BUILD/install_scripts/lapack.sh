@@ -40,7 +40,7 @@ cd $BUILD_DIR
 # GET PACKAGE SOURCE FILES ===================================================
   if [ ! -d $LAPACK_DIR ]; then
     mkdir $LAPACK_DIR
-    git clone https://github.com/Reference-LAPACK/lapack.git
+    git clone https://github.com/Reference-LAPACK/lapack-release.git lapack
   else
     echo
     echo "Directory $LAPACK_DIR already exists"
