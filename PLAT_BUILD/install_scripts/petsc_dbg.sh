@@ -123,6 +123,7 @@ if [ -f "plat_conf.sh" ]; then
                                --with-mpi-dir=$INSTALL_DIR/openmpi 
                                --with-shared-libraries=1 
                                --with-debugging=1 
+                               --download-hypre=yes
                                --download-fblaslapack=$INSTALL_BUILD_TAR_DIR/fblaslapack-3.4.2.tar.gz"
      
     ./configure $CONFIGURE_OPTIONS  >& $LOGDIR/petsc-dbg_config.log
