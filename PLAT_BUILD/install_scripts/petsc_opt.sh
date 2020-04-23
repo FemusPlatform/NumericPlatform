@@ -93,11 +93,11 @@ if [ -f "plat_conf.sh" ]; then
     fi
     
     # CHECK PRESENCE OF FBLASLAPACK PACKAGE
-    if [ ! -f $INSTALL_BUILD_TAR_DIR/fblaslapack-3.4.2.tar.gz ]; then
-       wget --progress=dot http://ftp.mcs.anl.gov/pub/petsc/externalpackages/fblaslapack-3.4.2.tar.gz \
+    if [ ! -f $INSTALL_BUILD_TAR_DIR/fblaslapack-v3.4.2-p3.tar.gz ]; then
+       wget --progress=dot https://bitbucket.org/petsc/pkg-fblaslapack/get/v3.4.2-p3.tar.gz \
        2>&1 | grep "%" |  sed -u -e "s,\.,,g" | awk '{print $2}' | sed -u -e  "s,\%,,g" \
-       | dialog --gauge "Download fblaslapack 3.4.2" 10 100
-       mv  fblaslapack-3.4.2.tar.gz  $INSTALL_BUILD_TAR_DIR/fblaslapack-3.4.2.tar.gz
+       | dialog --gauge "Download fblaslapack v3.4.2-p3" 10 100
+       mv  v3.4.2-p3.tar.gz  $INSTALL_BUILD_TAR_DIR/fblaslapack-v3.4.2-p3.tar.gz
        clear
     fi
   fi  
@@ -124,8 +124,7 @@ if [ -f "plat_conf.sh" ]; then
                                --with-mpi-dir=$INSTALL_DIR/openmpi 
                                --with-shared-libraries=1 
                                --with-debugging=0
-                               --download-hypre=yes
-                               --download-fblaslapack=$INSTALL_BUILD_TAR_DIR/fblaslapack-3.4.2.tar.gz"
+                               --download-fblaslapack=$INSTALL_BUILD_TAR_DIR/fblaslapack-v3.4.2-p3.tar.gz"
 
     ./configure $CONFIGURE_OPTIONS  >& $LOGDIR/petsc-opt_config.log
     if [ "$?" != "0" ]; then
@@ -146,7 +145,7 @@ if [ -f "plat_conf.sh" ]; then
     fi
     # 2d test---------------------------------------------------------
     echo $SCRIPT_NAME ": 2d testing"
-    make test >& $LOGDIR/petsc-opt_testing.log
+    make check >& $LOGDIR/petsc-opt_testing.log
     if [ "$?" != "0" ]; then
       echo -e " 2d ${red}ERROR! Unable to run test examples${NC}"
       COMPLETED=1
@@ -160,7 +159,7 @@ if [ -f "plat_conf.sh" ]; then
       COMPLETED=1
       return
     fi
-    echo $SCRIPT_NAME ": 2 "$PKG_NAME" in debug mode successfully installed!"
+    echo $SCRIPT_NAME ": 2 "$PKG_NAME" in opt mode successfully installed!"
     #  end with no problems +++++++++++++++++++++++++++++++++++++++++++++++++
   
   else

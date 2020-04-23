@@ -10,6 +10,7 @@ if [ $VERSION == ""  ]; then
   break
 fi
 
+
 export PKG_NAME=petsc-$VERSION
 PKG_DIR=$PKG_NAME;
 TAR_DIR=packages_targz;
@@ -92,15 +93,15 @@ if [ -f "plat_conf.sh" ]; then
     fi
     
     # CHECK PRESENCE OF FBLASLAPACK PACKAGE
-    if [ ! -f $INSTALL_BUILD_TAR_DIR/fblaslapack-3.4.2.tar.gz ]; then
-       wget --progress=dot http://ftp.mcs.anl.gov/pub/petsc/externalpackages/fblaslapack-3.4.2.tar.gz \
+    if [ ! -f $INSTALL_BUILD_TAR_DIR/fblaslapack-v3.4.2-p3.tar.gz ]; then
+       wget --progress=dot https://bitbucket.org/petsc/pkg-fblaslapack/get/v3.4.2-p3.tar.gz \
        2>&1 | grep "%" |  sed -u -e "s,\.,,g" | awk '{print $2}' | sed -u -e  "s,\%,,g" \
-       | dialog --gauge "Download fblaslapack 3.4.2" 10 100
-       mv  fblaslapack-3.4.2.tar.gz  $INSTALL_BUILD_TAR_DIR/fblaslapack-3.4.2.tar.gz
+       | dialog --gauge "Download fblaslapack v3.4.2-p3" 10 100
+       mv  v3.4.2-p3.tar.gz  $INSTALL_BUILD_TAR_DIR/fblaslapack-v3.4.2-p3.tar.gz
        clear
     fi
-     
-  fi   
+  fi  
+  
   cd $PKG_NAME_DIR
   
   export METHOD=dbg
@@ -112,7 +113,7 @@ if [ -f "plat_conf.sh" ]; then
   echo   $SCRIPT_NAME ": 2a logdir="$LOGDIR 
   
   if [ ! -d "$BUILD_DIR/$PKG_NAME/$PETSC_ARCH" ]; then
-  
+ 
     echo $SCRIPT_NAME ": 2 Compiling "$PKG_NAME" in debug mode"
     echo $SCRIPT_NAME ": 2 script-> 2a prefix -> 2b configure-> 2c make-> 2d test -> 2e install"
     
@@ -122,14 +123,14 @@ if [ -f "plat_conf.sh" ]; then
     export CONFIGURE_OPTIONS="--prefix=$INST_PREFIX 
                                --with-mpi-dir=$INSTALL_DIR/openmpi 
                                --with-shared-libraries=1 
-                               --with-debugging=1 
-                               --download-hypre=yes
-                               --download-fblaslapack=$INSTALL_BUILD_TAR_DIR/fblaslapack-3.4.2.tar.gz"
-     
+                               --with-debugging=1
+                               --download-fblaslapack=$INSTALL_BUILD_TAR_DIR/fblaslapack-v3.4.2-p3.tar.gz"
+
     ./configure $CONFIGURE_OPTIONS  >& $LOGDIR/petsc-dbg_config.log
     if [ "$?" != "0" ]; then
       echo -e " 2b ${red}ERROR! Unable to configure${NC}"
       echo -e " 2b ${red}See the log for details${NC}"
+      COMPLETED=1
       return
     fi
     
@@ -144,7 +145,7 @@ if [ -f "plat_conf.sh" ]; then
     fi
     # 2d test---------------------------------------------------------
     echo $SCRIPT_NAME ": 2d testing"
-    make test >& $LOGDIR/petsc-dbg_testing.log
+    make check >& $LOGDIR/petsc-dbg_testing.log
     if [ "$?" != "0" ]; then
       echo -e " 2d ${red}ERROR! Unable to run test examples${NC}"
       COMPLETED=1
@@ -158,7 +159,7 @@ if [ -f "plat_conf.sh" ]; then
       COMPLETED=1
       return
     fi
-    echo $SCRIPT_NAME ": 2 "$PKG_NAME" in debug mode successfully installed!"
+    echo $SCRIPT_NAME ": 2 "$PKG_NAME" in dbg mode successfully installed!"
     #  end with no problems +++++++++++++++++++++++++++++++++++++++++++++++++
   
   else
@@ -176,24 +177,23 @@ if [ -f "plat_conf.sh" ]; then
   
   cd $BUILD_DIR
   if [ "$?" != "0" ]; then
-    echo -e " 3 ${red}ERROR! the lib is not available${NC}"
+    echo -e " 3 ${red}ERROR! Package not available${NC}"
     return
   fi
   echo
   
-  echo $SCRIPT_NAME ": 3 script -> 3a no links  for dbg -> 3b usage "
-  echo $SCRIPT_NAME ": 3a no links for dbg"
-  echo $SCRIPT_NAME " 3 PETSC post-install: petsc -> petsc.version " 
-  echo $SCRIPT_NAME ": 3b usage commands"
+  echo $SCRIPT_NAME " 3 script -> 3a liks -> 3b usage commands"
   
-  # ln -s $INSTALL_DIR/$OPENMPI_NAME  $INSTALL_DIR/petsc
-  echo $SCRIPT_NAME ": 3a post install: please now install PETSC opt by using petsc_opt.sh. "
-  echo "Note: we write in ../plat_conf.sh  the following environment: "
+  # 3a link ---------------------------------------------------------------------
+  rm -r $INSTALL_DIR/petsc
+  echo $SCRIPT_NAME " 3a PETSC post-install: petsc -> petsc.version " 
+  ln -s $INSTALL_DIR/$PKG_NAME/linux-dbg  $INSTALL_DIR/petsc
+  
+  # 3b usage commands -----------------------------------------------------------
+  echo  $SCRIPT_NAME " 3b PETSC post install: PETSC usage "
+  echo "In order to run PETSC please set the following environment: "
   echo "export PETSC_DIR="$INSTALL_DIR/petsc
   echo "export PETSC_ARCH=linux-dbg"
-  echo
-  echo " plat_conf.sh  generated with MPI dependence"
-  echo
    
 else
 

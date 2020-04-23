@@ -8,9 +8,9 @@ export SalomeLastest="8.5.0"
 export OpenmpiLast="3.1.4"
 
 # PETSC
-export PetscLast='3.12.0'
+export PetscLast='3.13.0'
 export PetscLatest=$DefaultLatest
 
 # LIBMESH
-export LibmeshLast='1.5.0'
+export LibmeshLast='1.5.1'
 export LibmeshLatest=$DefaultLatest
