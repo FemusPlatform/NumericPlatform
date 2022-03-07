@@ -14,6 +14,7 @@ if [ $VERSION == ""  ]; then
 fi
 
 PKG_NAME=libmesh-$VERSION
+TAR_NAME=v$VERSION
 PKG_DIR=$PKG_NAME;
 TAR_DIR=packages_targz;
 LOG_DIR=package_logs;
@@ -83,21 +84,21 @@ if [ ! -d $INSTALL_BUILD_PKG_DIR ];   then
   if [ $VERSION == 'latest' ]; then
     git clone git://github.com/libMesh/libmesh.git  $INSTALL_BUILD_PKG_DIR  
   else
-    if [ ! -f $INSTALL_BUILD_TAR_DIR/${PKG_NAME}.tar.gz ]; then
-      wget --progress=dot https://github.com/libMesh/libmesh/releases/download/v$VERSION/libmesh-$VERSION.tar.gz \
+    if [ ! -f $INSTALL_BUILD_TAR_DIR/${TAR_NAME}.tar.gz ]; then
+      wget --progress=dot https://github.com/libMesh/libmesh/archive/refs/tags/v$VERSION.tar.gz \
       2>&1 | grep "%" |  sed -u -e "s,\.,,g" | awk '{print $2}' | sed -u -e  "s,\%,,g" \
       | dialog --gauge "Download Libmesh $VERSION" 10 100
       clear
       if [ $fast == 'no' ]; then 
-        dialog --title "Done downloading" --msgbox "${PKG_NAME}.tar.gz dowloaded from https://github.com/libMesh/libmesh/releases/download/v$VERSION/libmesh-$VERSION.tar.gz " 10 50
+        dialog --title "Done downloading" --msgbox "${TAR_NAME}.tar.gz dowloaded from https://github.com/libMesh/libmesh/archive/refs/tags/v$VERSION.tar.gz " 10 50
         clear
       fi
-        mv  ${PKG_NAME}.tar.gz    $INSTALL_BUILD_TAR_DIR/${PKG_NAME}.tar.gz
+        mv  ${TAR_NAME}.tar.gz    $INSTALL_BUILD_TAR_DIR/${TAR_NAME}.tar.gz
     fi
-    if [ ! -d "$INSTALL_BUILD_TAR_DIR/$PKG_NAME" ]; then
+    if [ ! -d "$INSTALL_BUILD_TAR_DIR/$TAR_NAME" ]; then
       cd $BUILD_DIR
-      echo " ............  extracting the file: " $BUILD_DIR/packages_targz/$PKG_NAME.tar.gz "  ..............."
-      tar -xzvf "$INSTALL_BUILD_TAR_DIR/$PKG_NAME.tar.gz" 
+      echo " ............  extracting the file: " $BUILD_DIR/packages_targz/$TAR_NAME.tar.gz "  ..............."
+      tar -xzvf "$INSTALL_BUILD_TAR_DIR/$TAR_NAME.tar.gz" 
       echo "............. done extracting ............................................"
     fi
   fi
