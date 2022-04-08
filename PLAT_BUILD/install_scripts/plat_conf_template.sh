@@ -14,6 +14,7 @@ export PLAT_USERS_DIR=$PLAT_DIR/PLAT_USERS
 export PLAT_CODES_DIR=$PLAT_DIR/PLAT_CODES
 export PLAT_VISU_DIR=$PLAT_DIR/PLAT_VISU
 
+source $BUILD_DIR/buildgui_vers.sh
 
 # =====================================================
 #                    LEVEL 2 - THIRD PARTY
@@ -56,11 +57,11 @@ echo "HDF5  " LIB  not installed
 fi
 
 # med 
-MED_COUPL_PATH=$PLAT_DIR/PLAT_THIRD_PARTY/MED_coupling
+MED_COUPL_PATH=$PLAT_DIR/PLAT_THIRD_PARTY/medcoupling
 if [ -d  "$MED_COUPL_PATH" ]; then
 export med_PATH=$PLAT_DIR/PLAT_THIRD_PARTY/med
 export MED_PATH=$PLAT_DIR/PLAT_THIRD_PARTY/MED_mod
-export MED_COUPL_PATH=$PLAT_DIR/PLAT_THIRD_PARTY/MED_coupling
+export MED_COUPL_PATH=$PLAT_DIR/PLAT_THIRD_PARTY/medcoupling
 export LD_LIBRARY_PATH=$med_PATH/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$MED_PATH/lib/salome:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$MED_COUPL_PATH/lib:$LD_LIBRARY_PATH

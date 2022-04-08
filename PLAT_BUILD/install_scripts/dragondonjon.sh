@@ -19,8 +19,8 @@ echo
 echo $SCRIPT_NAME ": Script set up for "  $SCRIPT_NAME 
 echo
 cd ..
-if [ -f "plat_conf.sh" ]; then
-  source plat_conf.sh
+if [ -f "platform_conf.sh" ]; then
+  source platform_conf.sh
   
 # 1c --------------- platform setup -------------------------------------------
  INSTALL_TAR_DIR=$BUILD_DIR/$TAR_DIR/
@@ -47,6 +47,7 @@ cd $BUILD_DIR
 
 
 if [ ! -d "$INSTALL_PLAT_PKG_DIR" ]; then
+  echo  "mkdir $INSTALL_PLAT_PKG_DIR"
   mkdir $INSTALL_PLAT_PKG_DIR
   
   if [ ! -f $INSTALL_TAR_DIR/version5_v5.0.5.tgz ]; then
@@ -62,7 +63,8 @@ if [ ! -d "$INSTALL_PLAT_PKG_DIR" ]; then
       fi
   
   echo "Dragon Donjon does not exist: extraction tar"
-  tar -xzf $INSTALL_TAR_DIR/version5_v5.0.5.tgz -C $INSTALL_PLAT_PKG_DIR --strip-components 1
+  tar -xzf $INSTALL_TAR_DIR/Version5_v5.0.5.tgz -C $INSTALL_PLAT_PKG_DIR --strip-components 1
+    
   echo $SCRIPT_NAME ": 1c  Dragon Donjon extract and in place" 
 else
   echo " Dragon Donjon dir exists: no extraction tar"
@@ -78,7 +80,7 @@ echo $SCRIPT_NAME " 2a: build in " $PWD
 #!/bin/bash 
 # ..................................................................=
 echo ".................................................................."
-echo "STARTING UTILIB"
+echo "STARTING UTILIB in $PWD"
 cd ./Utilib/
 ../script/install  > $INSTALL_PLAT_LOG_DIR/utilib
  grep "Install  : ERROR" $INSTALL_PLAT_LOG_DIR/utilib
