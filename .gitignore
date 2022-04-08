@@ -7,7 +7,9 @@ PLAT_CODES/*
 PLAT_THIRD_PARTY/*
 PLAT_USERS/*
 PLAT_VISU/*
-plat_conf.sh
+platform_conf.sh
+platform_requirements.log
+
 # exception
 !PLAT_BUILD/*.sh
 !PLAT_BUILD/install_scripts/*.sh
