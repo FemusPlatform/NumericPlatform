@@ -13,10 +13,10 @@ export medcoupling_name_pck="medcoupling-9.3.0"
 export medcoupling_url="https://files.salome-platform.org/Salome/other/medCoupling-9.3.0.tar.gz"
 
 #SALOME
-export salome_ver="9.8.0"
-export salome_name_pck="SALOME-9.8.0"
-export salome_name_download="SALOME-9.8.0.tar.gz"
-export salome_url="https://files.salome-platform.org/Salome/Salome9.8.0/SALOME-9.8.0.tar.gz"
+export salome_ver="9.9.0"
+export salome_name_pck="SALOME-9.9.0"
+export salome_name_download="SALOME-9.9.0.tar.gz"
+export salome_url="https://files.salome-platform.org/Salome/Salome9.9.0/SALOME-9.9.0.tar.gz"
 
 #openmpi
 export openmpi_ver="3.1.4"
@@ -76,7 +76,7 @@ export parafoam_url="https://sourceforge.net/projects/openfoamplus/files/ThirdPa
 export openfcom_ver="v2206"
 export openfcom_name_download="OpenFOAM-v2206.tar.gz"
 export openfcom_name_pck="OpenFOAM-v2206"
-export openfcom_url="https://develop.openfoam.com/Development/openfoam.git"
+export openfcom_url="https://develop.openfoam.com/Development/openfoam.git"  
 
 #OPENFOAM
 export openfoam_ver="v3.0+"
