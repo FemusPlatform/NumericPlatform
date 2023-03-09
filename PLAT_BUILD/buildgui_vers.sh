@@ -72,6 +72,12 @@ export parafoam_name_download="ThirdParty-v3.0+.tgz"
 export parafoam_name_pck="ThirdParty-v3.0+"
 export parafoam_url="https://sourceforge.net/projects/openfoamplus/files/ThirdParty-v3.0+.tgz"
   
+# openfcom
+export openfcom_ver="v2206"
+export openfcom_name_download="OpenFOAM-v2206.tar.gz"
+export openfcom_name_pck="OpenFOAM-v2206"
+export openfcom_url="https://develop.openfoam.com/Development/openfoam.git"
+
 #OPENFOAM
 export openfoam_ver="v3.0+"
 export openfoam_name_download="OpenFOAM-v3.0+.tgz"

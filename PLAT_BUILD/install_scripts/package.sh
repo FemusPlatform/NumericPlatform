@@ -3,6 +3,7 @@ source install_scripts/package_fun.sh
 # ##################################################################################################
 # Install OpenMPI
 # source install_scripts/package.sh  openmpi
+# source install_scripts/package.sh  openfcom (openfoam.com)
 # --------------------------------------------------------------------------------------------------
 # This file script should be placed inside .../platform/plat_installation ($BUILD_DIR) and
 # the tar.gz package in the packages_targz dir ($BUILD_DIR/packages_targz)

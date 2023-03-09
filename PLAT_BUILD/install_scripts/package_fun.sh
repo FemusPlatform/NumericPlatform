@@ -1,3 +1,24 @@
+# ====================================== platform ===============================================
+#   check_plat()  package=$1
+#   check if package is in the platform
+# =====================================  tar ====================================================
+#   pre_tar()     package=$1  packagename=$2
+#   create directory for untar (tar not in a directory) with command mkdir $BUILD_DIR/$2
+#   --------------------------------------------------------------------------------------------
+#   run_tar() package download=$1
+#   untar with command tar -xzvf $BUILD_DIR/packages_targz/$1
+#   --------------------------------------------------------------------------------------------
+#   post_tar()  package=$1
+#   mv $BUILD_DIR/$2 $PLAT_CODES_DIR/$2;link_install $2 $1; link_install $2 "../PLAT_BUILD/$2"
+# =============================================================================================
+# package=$1  if [ $1 == 'package'  ]; then
+# 'libmesh', 'petsc','femus','salome','med','medcoupling'
+# working 'openmpi',
+# woring  'openfcom', OpenFoam from o.com
+# working 'openforg' OpenFoam from o.org
+# working 'dragondonjon'
+#   --------------------------------------------------------------------------------------------
+
 # ==================================================================================================
 check_plat(){
 # ==================================================================================================
@@ -75,12 +96,12 @@ fi
   fi
   # ----------------------------------------------------------------------------------------------
   if [ $1 == 'openmpi' ]; then  export INSTALL_DIR=$PLAT_THIRD_PARTY_DIR;  fi
-  # ----------------------------------------------------------------------------------------------  
-  if [ $1 == 'openfoam' ]; then  export INSTALL_DIR=$PLAT_CODES_DIR;   fi
-  # ---------------------------------------------------------------------------------------------- 
+  # ----------------------------------------------------------------------------------------------
+  if [ $1 == 'openfcom' ]; then  export INSTALL_DIR=$PLAT_CODES_DIR;   fi
+  # ---------------------------------------------------------------------------------------------
+  if [ $1 == 'openforg' ]; then  export INSTALL_DIR=$PLAT_CODES_DIR;   fi
+  # ----------------------------------------------------------------------------------------------
   if [ $1 == 'dragondonjon' ]; then  export INSTALL_DIR=$PLAT_CODES_DIR; fi
-  # ---------------------------------------------------------------------------------------------- 
-   
   # ----------------------------------------------------------------------------------------------
 
 
@@ -89,7 +110,7 @@ fi
 
 return
 }
-   
+
 # **********************************************************************************
 #   TAR
 # **********************************************************************************
@@ -142,6 +163,11 @@ echo "**************  POST tar" $1
         mv $BUILD_DIR/$2 $PLAT_CODES_DIR/$2
         link_install $2 $1
         link_install $2 "../PLAT_BUILD/$2"
+
+#         tar -xzvf $BUILD_DIR/packages_targz/ThirdParty-v2112.tar.gz
+        WM_THIRD_PARTY_DIR=$PLAT_CODES_DIR/$2/ThirdParty-$openfcom_ver
+
+        return
     fi
 
 
@@ -245,7 +271,7 @@ if [ $1 == 'medcoupling'  ]; then
  name_pck2=$(echo $2 | tr [:lower:] [:upper:])
  export CONFIGURATION_ROOT_DIR=$BUILD_DIR/$2/CONFIGURATION_$medcoupling_ver
   echo " Configuration for medCoupling in" $CONFIGURATION_ROOT_DIR
- 
+
  echo preconfig $name_pck2
  export CCMAKEDIR=$name_pck2; echo "${CCMAKEDIR} "; echo $name_pck2;
 
@@ -272,7 +298,59 @@ if [ $1 == 'medcoupling'  ]; then
                     -DCMAKE_Fortran_COMPILER_AR=$PLAT_THIRD_PARTY_DIR/openmpi/bin/mpif90 "
   return
  fi
- 
+ # -------------------------------------------------------------------------------------
+ # ------------------------------- openfoamcom---------------------------------------------------
+if [ $1 == 'openfcom' ]; then
+
+     # unset foam variables
+       unset OPENMPI_INCLUDE_DIR
+       unset OPENMPI_COMPILE_FLAGS
+       unset OPENMPI_LINK_FLAGS
+
+        # 1d Add to the path the openmpi executables and libraries in order to compile petsc
+        export PATH=$PLAT_THIRD_PARTY_DIR/openmpi/bin/:$PATH
+        export LD_LIBRARY_PATH=$PLAT_THIRD_PARTY_DIR/openmpi/lib64/:$LD_LIBRARY_PATH
+        export LD_LIBRARY_PATH=$PLAT_THIRD_PARTY_DIR/openmpi/lib/:$LD_LIBRARY_PATH
+        export PETSC_ARCH=linux-opt
+        export PETSC_DIR=$PLAT_THIRD_PARTY_DIR/petsc
+        # 1e HDF5 setup ---------------------------------------------------------------
+        export HDF5_DIR=$PLAT_THIRD_PARTY_DIR/hdf5
+
+        echo "openmpi include dirs " "`mpicc --showme:incdirs`"
+        echo "openmpi library dirs " "`mpicc --showme:libdirs`"
+        echo "openmpi link dirs    " "`mpicc --showme:linkdirs`"
+        echo ${SCRIPT_NAME} " 1d MPI dependency: PATH=           "$PLAT_THIRD_PARTY_DIR/"openmpi/bin/"
+        echo ${SCRIPT_NAME} " 1d MPI dependency: LD_LIBRARY_PATH="$PLAT_THIRD_PARTY_DIR/"openmpi/lib/"
+        echo ${SCRIPT_NAME} " 1d PETSC dependency: PETSC dir    ="$PLAT_THIRD_PARTY_DIR/petsc
+        echo ${SCRIPT_NAME} " 1d HDF5 dependency: HDF5 dir      =:" $HDF5_DIR
+
+        echo " 3) --------- bashrc setup: of6 environment --------- "
+        echo
+          echo "line to read" $PLAT_CODES_DIR/$name_pck/$name_pck/etc/bashrc
+        isThere=`type -t openfoamcom`
+        if [ -z "$isThere" ]; then
+        echo "line to read" $PLAT_CODES_DIR/$name_pck/$name_pck/etc/bashrc
+        echo "alias openfoamcom='export MYHOME=$PLAT_CODES_DIR && source $PLAT_CODES_DIR/$name_pck/$name_pck/etc/bashrc'" >> ~/.bashrc
+        else echo "  openfoamcom alias is already in your ~/.bashrc" ;  fi
+        echo " --------- end foam environment --------- "
+        echo
+        source ~/.bashrc
+
+
+
+# #         METHOD=$(echo "\"dbg opt\"")
+# #         METHOD=${METHOD:="dbg opt"}
+#         export OPTIONS="--prefix=$INSTALL_DIR/$2\
+#                 --libdir=$INSTALL_DIR/$2/lib \
+#                 --with-mpi-dir=$PLAT_THIRD_PARTY_DIR/openmpi \
+#                 --with-hdf5=$PLAT_THIRD_PARTY_DIR/hdf5  \
+#                 --with-methods="opt"  "
+     return
+  fi
+ # -------------------------------------------------------------------------------------
+
+
+echo "**************  END pre configure" $1
   return
 }
 
@@ -347,6 +425,21 @@ run_compile(){
 
 # ----------------------------------------------------------------------------------
 if [ $1 == 'salome'  ]; then    return;   fi
+  # ----------------------------------------------------------------------------------
+if [ $1 == 'openfcom'  ]; then
+
+  echo "4) Now let's build OpenFOAM ... will take a while... somewhere between 30 minutes to 3-6 hours ----------"
+  export WM_NCOMPPROCS=2
+  cd $PLAT_CODES_DIR/$name_pck/$name_pck/
+  echo "foam directory " $PWD
+  # openfoamcom
+  source etc/bashrc
+  # This next command will take a while... somewhere between 30 minutes to 3-6 hours.
+  ./Allwmake   >& $PLAT_BUILD_LOG_DIR/$1_compile.log
+   #Run it a second time for getting a summary of the installation
+  ./Allwmake
+  return;
+     fi
 # ----------------------------------------------------------------------------------
    if [ $1 == 'femus'  ]; then
   femus_link_solver_files
@@ -380,9 +473,23 @@ post_compile(){
       dialog --msgbox " 2d ${red}ERROR! Unable to run test examples${NC}" 10 50
       return
     fi
-    
+    return
     fi
- # ----------------------------------------------------------------------------------   
+
+  # -----------------------openfoam com ------------------------------------------------
+    if [ $1 == 'openfcom'  ]; then
+    echo " OpenFOAM installed ----------"
+    openfoamcom
+    foamSystemCheck
+    # Now create a run directory and copy all the tutorials to it
+    echo
+    return
+    fi
+
+
+
+
+ # ----------------------------------------------------------------------------------
     return
 }
 # **********************************************************************************
@@ -407,7 +514,19 @@ run_install(){
    if [ $1 == 'salome'  ]; then    return;   fi
    # ----------------------------------------------------------------------------------
    if [ $1 == 'femus'  ]; then return;   fi
+   # ----------------------------------------------------------------------------------
+   if [ $1 == 'openfcom'  ]; then
 
+
+  cd $PLAT_CODES_DIR/$name_pck/GeN-Foam/GeN-Foam/
+  echo "GeN-Foam directory " $PWD
+  openfoamcom
+  # This next command will take a while... somewhere between 30 minutes to 3-6 hours.
+  ./Allwmake   >& $PLAT_BUILD_LOG_DIR/$1_install.log
+
+   return;
+   fi
+   # ----------------------------------------------------------------------------------
 echo "make install >& $PLAT_BUILD_LOG_DIR/$1_install.log"
     make install >& $PLAT_BUILD_LOG_DIR/$1_install.log
       if [ "$?" != "0" ]; then

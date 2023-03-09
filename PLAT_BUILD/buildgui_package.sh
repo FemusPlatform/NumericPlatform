@@ -87,6 +87,7 @@ $DIALOG --backtitle "Software platform" \
         "femus"            "$femus_ver"     off  \
         "dragondonjon"     "$dragondonjon_ver"  off  \
         "openfoam"         "$openfoam_ver" off \
+        "openfcom"         "$openfcom_ver" off \
         "getfem"           "$getfem_ver" off 2> $tempfile
         
         
