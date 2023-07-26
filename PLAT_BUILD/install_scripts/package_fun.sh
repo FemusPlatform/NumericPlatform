@@ -205,21 +205,26 @@ echo "**************  pre configure" $1
   export INST_PREFIX=$INSTALL_DIR/$2/$PETSC_ARCH
   echo   $1 ": 2a prefix="$INST_PREFIX
 
-   if [  -d "$BUILD_DIR/packages_targz/fblaslapack.tar.gz" ]; then
-      export OPTIONS="--prefix=$INST_PREFIX
-                               --with-mpi-dir=$INSTALL_DIR/openmpi
-                               --with-shared-libraries=1
-                               --with-debugging=0
-                               --download-fblaslapack=$BUILD_DIR/packages_targz/fblaslapack.tar.gz
-                               --download-hypre"
-    else
-     export OPTIONS="--prefix=$INST_PREFIX
-                               --with-mpi-dir=$INSTALL_DIR/openmpi
-                               --with-shared-libraries=1
-                               --with-debugging=0
-                               --download-fblaslapack
-                               --download-hypre"
-     fi
+  OPTIONS="--prefix=$INST_PREFIX --with-shared-libraries=1 --with-debugging=0 --download-fblaslapack --download-mumps --download-scalapack --download-hypre --download-metis --with-mpi-dir=$INSTALL_DIR/openmpi"
+  #  if [  -d "$BUILD_DIR/packages_targz/fblaslapack.tar.gz" ]; then
+  #     export OPTIONS="--prefix=$INST_PREFIX
+  #                              --with-mpi-dir=$INSTALL_DIR/openmpi
+  #                              --with-shared-libraries=1
+  #                              --with-debugging=0
+  #                              --download-fblaslapack
+  #                              --download-hypre
+  #                              --download-mumps
+  #                              --download-scalapack"
+  #   else
+  #    export OPTIONS="--prefix=$INST_PREFIX
+  #                              --with-mpi-dir=$INSTALL_DIR/openmpi
+  #                              --with-shared-libraries=1
+  #                              --with-debugging=0
+  #                              --download-fblaslapack
+  #                              --download-hypre
+  #                              --download-mumps
+  #                              --download-scalapack"
+  #    fi
     return
   fi
   # -------------------------------------------------------------------------------------
