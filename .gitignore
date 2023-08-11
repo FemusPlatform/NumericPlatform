@@ -1,12 +1,13 @@
 # git-ls-files --others --exclude-from=.git/info/exclude
 # Lines that start with '#' are comments.
 
-# FOLDERS 
+# FOLDERS
 PLAT_BUILD/*
 PLAT_CODES/*
 PLAT_THIRD_PARTY/*
 PLAT_USERS/*
 PLAT_VISU/*
+spack_env/.spack-env/*
 platform_conf.sh
 platform_requirements.log
 
