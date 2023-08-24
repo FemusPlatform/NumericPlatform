@@ -300,7 +300,8 @@ if [ $1 == 'medcoupling'  ]; then
                     -DCMAKE_Fortran_COMPILER=$PLAT_THIRD_PARTY_DIR/openmpi/bin/mpif90
                     -DCMAKE_CXX_COMPILER_AR=$PLAT_THIRD_PARTY_DIR/openmpi/bin/mpicxx
                     -DCMAKE_C_COMPILER_AR=$PLAT_THIRD_PARTY_DIR/openmpi/bin/mpicc
-                    -DCMAKE_Fortran_COMPILER_AR=$PLAT_THIRD_PARTY_DIR/openmpi/bin/mpif90 "
+                    -DCMAKE_Fortran_COMPILER_AR=$PLAT_THIRD_PARTY_DIR/openmpi/bin/mpif90
+                    -DMEDCOUPLING_ENABLE_PYTHON=ON"
   return
  fi
  # -------------------------------------------------------------------------------------
@@ -313,6 +314,55 @@ if [ $1 == 'openfcom' ]; then
        unset OPENMPI_LINK_FLAGS
 
         # 1d Add to the path the openmpi executables and libraries in order to compile petsc
+        export PATH=$PLAT_THIRD_PARTY_DIR/openmpi/bin/:$PATH
+        export LD_LIBRARY_PATH=$PLAT_THIRD_PARTY_DIR/openmpi/lib64/:$LD_LIBRARY_PATH
+        export LD_LIBRARY_PATH=$PLAT_THIRD_PARTY_DIR/openmpi/lib/:$LD_LIBRARY_PATH
+        export PETSC_ARCH=linux-opt
+        export PETSC_DIR=$PLAT_THIRD_PARTY_DIR/petsc
+        # 1e HDF5 setup ---------------------------------------------------------------
+        export HDF5_DIR=$PLAT_THIRD_PARTY_DIR/hdf5
+
+        echo "openmpi include dirs " "`mpicc --showme:incdirs`"
+        echo "openmpi library dirs " "`mpicc --showme:libdirs`"
+        echo "openmpi link dirs    " "`mpicc --showme:linkdirs`"
+        echo ${SCRIPT_NAME} " 1d MPI dependency: PATH=           "$PLAT_THIRD_PARTY_DIR/"openmpi/bin/"
+        echo ${SCRIPT_NAME} " 1d MPI dependency: LD_LIBRARY_PATH="$PLAT_THIRD_PARTY_DIR/"openmpi/lib/"
+        echo ${SCRIPT_NAME} " 1d PETSC dependency: PETSC dir    ="$PLAT_THIRD_PARTY_DIR/petsc
+        echo ${SCRIPT_NAME} " 1d HDF5 dependency: HDF5 dir      =:" $HDF5_DIR
+
+        echo " 3) --------- bashrc setup: of6 environment --------- "
+        echo
+          echo "line to read" $PLAT_CODES_DIR/$name_pck/$name_pck/etc/bashrc
+        isThere=`type -t openfoamcom`
+        if [ -z "$isThere" ]; then
+        echo "line to read" $PLAT_CODES_DIR/$name_pck/$name_pck/etc/bashrc
+        echo "alias openfoamcom='export MYHOME=$PLAT_CODES_DIR && source $PLAT_CODES_DIR/$name_pck/$name_pck/etc/bashrc'" >> ~/.bashrc
+        else echo "  openfoamcom alias is already in your ~/.bashrc" ;  fi
+        echo " --------- end foam environment --------- "
+        echo
+        source ~/.bashrc
+
+
+
+# #         METHOD=$(echo "\"dbg opt\"")
+# #         METHOD=${METHOD:="dbg opt"}
+#         export OPTIONS="--prefix=$INSTALL_DIR/$2\
+#                 --libdir=$INSTALL_DIR/$2/lib \
+#                 --with-mpi-dir=$PLAT_THIRD_PARTY_DIR/openmpi \
+#                 --with-hdf5=$PLAT_THIRD_PARTY_DIR/hdf5  \
+#                 --with-methods="opt"  "
+     return
+  fi
+ # -------------------------------------------------------------------------------------
+
+if [ $1 == 'openfcom' ]; then
+
+     # unset foam variables
+       unset OPENMPI_INCLUDE_DIR
+       unset OPENMPI_COMPILE_FLAGS
+       unset OPENMPI_LINK_FLAGS
+
+echo "**************  END pre configure" $1
         export PATH=$PLAT_THIRD_PARTY_DIR/openmpi/bin/:$PATH
         export LD_LIBRARY_PATH=$PLAT_THIRD_PARTY_DIR/openmpi/lib64/:$LD_LIBRARY_PATH
         export LD_LIBRARY_PATH=$PLAT_THIRD_PARTY_DIR/openmpi/lib/:$LD_LIBRARY_PATH
