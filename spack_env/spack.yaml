@@ -6,10 +6,15 @@ spack:
   # add package specs to the `specs` list
   specs:
   - hdf5@1.10.3~mpi
-  - salome-med@4.1.0
-  - salome-medcoupling@9.9.0
+  - salome-med@4.0.0
+  - salome-medcoupling@9.3.0~python
   - openmpi@4.1.5
-  - petsc@3.19.2~hdf5+hypre+mpi+mumps
+  - petsc@3.13.6~hdf5+hypre+mpi+mumps
+  - eigen@3.4.0
+  - libmesh@1.5.3+petsc+eigen+mpi+exodusii
   view: true
   concretizer:
     unify: true
+  packages:
+    all:
+      compiler: ['gcc@=10.4.0']

@@ -8,6 +8,7 @@ PLAT_THIRD_PARTY/*
 PLAT_USERS/*
 PLAT_VISU/*
 spack_env/.spack-env/*
+spack_env/spack.lock
 platform_conf.sh
 platform_requirements.log
 

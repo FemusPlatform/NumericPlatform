@@ -3,6 +3,9 @@
 # exit on errors
 set -e
 
+# avoid problems with splitting lib and lib64
+unset CONFIG_SITE
+
 # check that spack is available
 if ! command -v spack &> /dev/null
 then
@@ -36,3 +39,11 @@ ln -s ${openmpi_dir} PLAT_THIRD_PARTY/openmpi
 petsc_dir=$(spack location -i petsc)
 echo "linking medcoupling from ${petsc_dir}"
 ln -s ${petsc_dir} PLAT_THIRD_PARTY/petsc
+
+# link packages in PLAT_CODES
+mkdir -p PLAT_CODES
+
+libmesh_dir=$(spack location -i libmesh)
+echo "linking medcoupling from ${libmesh_dir}"
+ln -s ${libmesh_dir} PLAT_CODES/libmesh
+
