@@ -20,7 +20,10 @@ spack:
   # newer (date-based)
   - petsc@3.13.6~hdf5+hypre+mpi+mumps+metis
   - libmesh@1.5.3+petsc+eigen+mpi+exodusii
-  
+
+  # petsc from spack requires an external and unique blas/lapack library set
+  - openblas@0.3.23
+
   view: true
   concretizer:
     unify: true
