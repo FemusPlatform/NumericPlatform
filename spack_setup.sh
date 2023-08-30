@@ -22,28 +22,28 @@ mkdir -p PLAT_THIRD_PARTY
 
 hdf5_dir=$(spack location -i hdf5)
 echo "linking hdf5 from ${hdf5_dir}"
-ln -s ${hdf5_dir} PLAT_THIRD_PARTY/hdf5
+ln -sf ${hdf5_dir} PLAT_THIRD_PARTY/hdf5
 
 med_dir=$(spack location -i salome-med)
 echo "linking med from ${med_dir}"
-ln -s ${med_dir} PLAT_THIRD_PARTY/med
+ln -sf ${med_dir} PLAT_THIRD_PARTY/med
 
 medcoupling_dir=$(spack location -i salome-medcoupling)
 echo "linking medcoupling from ${medcoupling_dir}"
-ln -s ${medcoupling_dir} PLAT_THIRD_PARTY/medcoupling
+ln -sf ${medcoupling_dir} PLAT_THIRD_PARTY/medcoupling
 
 openmpi_dir=$(spack location -i openmpi)
 echo "linking openmpi from ${openmpi_dir}"
-ln -s ${openmpi_dir} PLAT_THIRD_PARTY/openmpi
+ln -sf ${openmpi_dir} PLAT_THIRD_PARTY/openmpi
 
 petsc_dir=$(spack location -i petsc)
 echo "linking medcoupling from ${petsc_dir}"
-ln -s ${petsc_dir} PLAT_THIRD_PARTY/petsc
+ln -sf ${petsc_dir} PLAT_THIRD_PARTY/petsc
 
 # link packages in PLAT_CODES
 mkdir -p PLAT_CODES
 
 libmesh_dir=$(spack location -i libmesh)
-echo "linking medcoupling from ${libmesh_dir}"
-ln -s ${libmesh_dir} PLAT_CODES/libmesh
+echo "linking libmesh from ${libmesh_dir}"
+ln -sf ${libmesh_dir} PLAT_CODES/libmesh
 
