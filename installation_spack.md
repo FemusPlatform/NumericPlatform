@@ -17,6 +17,9 @@ These packages must be available for the following steps
 ## Clone the `NumericPlatform` repository
 
 ```bash
+# select a directory where to install (absolute path)
+export SOFTWARE_DIR=<software_dir>
+
 cd $SOFTWARE_DIR
 git clone https://github.com/FemusPlatform/NumericPlatform
 ```
@@ -26,9 +29,6 @@ git clone https://github.com/FemusPlatform/NumericPlatform
 Select a directory where to install `spack` and `cd` to it
 
 ```bash
-# select a directory where to install spack
-export SOFTWARE_DIR=<software_dir>
-
 cd $SOFTWARE_DIR
 
 # clone the spack repository
@@ -80,5 +80,5 @@ cd $SOFTWARE_DIR/NumericPlatform
 
 ## Salome
 
-This routines do not install the `salome` platform, it can be installed separately
+This guide does not install the `salome` platform, it can be installed separately
 using a pre-compiled version. An example is given in the script `salome_setup.sh`.
