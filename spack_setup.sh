@@ -48,3 +48,6 @@ libmesh_dir=$(spack location -i libmesh)
 echo "linking libmesh from ${libmesh_dir}"
 ln -sf ${libmesh_dir} PLAT_CODES/libmesh
 
+# create empty libraries to satisfy femus dependencies
+ar cru PLAT_THIRD_PARTY/petsc/lib/libfblas.a
+ar cru PLAT_THIRD_PARTY/petsc/lib/libflapack.a
