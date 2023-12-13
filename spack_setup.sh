@@ -15,6 +15,7 @@ fi
 
 # install the spack environment
 spack env activate spack_env
+spack concretize -f
 spack install
 
 # link packages in PLAT_THIRD_PARTY
