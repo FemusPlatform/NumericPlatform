@@ -32,7 +32,7 @@ Select a directory where to install `spack` and `cd` to it
 cd $SOFTWARE_DIR
 
 # clone the spack repository
-git clone -c feature.manyFiles=true https://github.com/capitalaslash/spack.git -b v0.20_femus
+git clone -c feature.manyFiles=true https://github.com/capitalaslash/spack.git -b v0.21_femus
 
 # set up bashrc for spack automatic activation
 echo "source $SOFTWARE_DIR/spack/share/spack/setup-env.sh" | tee -a ~/.bashrc
